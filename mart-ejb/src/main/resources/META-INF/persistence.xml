@@ -5,13 +5,13 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/x
 version="2.0">
 
 <persistence-unit name="martUnit"> 
+<jta-data-source>java:jboss/datasources/martDS</jta-data-source>
 
 <properties>
 <property name="hibernate.hbm2ddl.auto" value="none"/>
 <property name="hibernate.archive.autodetection" value="class,hbm"/>
 <property name="hibernate.show_sql" value="true"/>
 <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect"/>
-<property name="hibernate.ejb.interceptor" value="com.etipl.pms.utilities.AuditLogInterceptor" />
 </properties>
 </persistence-unit>
 </persistence>
