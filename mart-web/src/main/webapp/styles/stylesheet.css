@@ -1,0 +1,79 @@
+/**index.html Style Sheet **/
+body { background-color:#F5F5F5;}
+.martweb_main {width:100%;}
+.martweb_main .martweb_header{ width:100%; float:left;}
+.martweb_main .martweb_menu{ width:100%; float:left;margin:0;list-style:none;padding:0;background-color:#dedede;border-width:1px;border-style:solid;border-color:#dedede;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;}
+.martweb_main .martweb_menu .drop_menu {background:#dedede;	padding:0;	margin:0;list-style-type:none;height:30px;}
+.martweb_main .martweb_menu .drop_menu li { float:left; }
+.martweb_main .martweb_menu .drop_menu li a {padding:9px 20px;display:block;	color:black;	text-decoration:none;	font:12px arial, verdana, sans-serif;}
+/* Submenu */
+.martweb_main .martweb_menu .drop_menu ul {position:absolute;left:-9999px;top:-9999px;list-style-type:none;}
+.martweb_main .martweb_menu .drop_menu li:hover { position:relative; background:#5FD367; }
+.martweb_main .martweb_menu .drop_menu li:hover ul {	left:0px;top:30px;background:#5FD367;padding:0px;}
+.martweb_main .martweb_menu .drop_menu li:hover ul li a {	padding:5px;display:block;width:168px;text-indent:15px;background-color:#dedede;}
+.martweb_main .martweb_menu .drop_menu li:hover ul li a:hover { background:#005555; }
+.martweb_main .martweb_body{ width:100%; float:left;}
+.martweb_main .martweb_page_container{width:100%; float:left;}
+.martweb_main .martweb_footer{ width:100%; float:left;}
+.martweb_main .text_mandatory{ background-color:#FFFF00;}
+.martweb_main .asterisk{ color:#FF0000;font-weight:bold;}
+.martweb_main input{height: 18px;}
+.martweb_main select{height: 23px;}
+.martweb_main .rowButtons{width: 87.5%; float:right; margin-top:1%;}
+.martweb_main .rowButtons .buttons{height:22px; float:left; margin-left:1%;}
+.martweb_main .rowButtons .help_buttons{height:22px; float:right; margin-right:1%;}
+
+/**user.html Style Sheet **/
+.mart_user_master {width: 100%;}
+.mart_user_master .mart_user_form_container{width: 100%;float:left;}
+.mart_user_master .mart_user_form_container .row{width: 100%;float:left; margin-top: 1%; height: 27px;}
+.mart_user_master .mart_user_form_container .row .rowCol{width: 30%;float:left; margin-left: 1%;}
+.mart_user_master .mart_user_form_container .row .rowCol label{width: 40%;float:left; text-align: right;}
+.mart_user_master .mart_user_form_container .row .rowCol .statusField{width: 58%;float:left;}
+.mart_user_master .mart_user_form_container .row .rowCol .statusField input{width: 10%;float:left;}
+.mart_user_master .mart_user_form_container .row .rowCol .statusField label{width: 50%;float:left; text-align: left;margin-top:1.5%;}
+.mart_user_master .mart_user_form_container .row .rowCol .colField{width: 58%;float:right;}
+.mart_user_master .mart_user_form_container .row .rowCol .colField input{width: 99%;float:left;}
+.mart_user_master .mart_user_form_container .row .rowCol .colField select{width: 100%;float:left;}
+.mart_user_master .mart_user_form_container .row .rowCol .colField .error{width: 100%;float:left; color: red; font-size:12px;}
+.mart_user_master .mart_user_grid_container{width: 100%;float:left;}
+
+/**type.html Style Sheet **/
+.mart_type_master {width: 60%;}
+.mart_type_master .mart_type_form_container{width: 100%;float:left;}
+.mart_type_master .mart_type_form_container .row{width: 100%;float:left; margin-top: 1%; height: 27px;}
+.mart_type_master .mart_type_form_container .row .rowCol{width: 30%;float:left; margin-left: 1%;}
+.mart_type_master .mart_type_form_container .row .rowCol label{width: 40%;float:left; text-align: right;}
+.mart_type_master .mart_type_form_container .row .rowCol .statusField{width: 58%;float:left;}
+.mart_type_master .mart_type_form_container .row .rowCol .statusField input{width: 10%;float:left;}
+.mart_type_master .mart_type_form_container .row .rowCol .statusField label{width: 50%;float:left; text-align: left;margin-top:1.5%;}
+.mart_type_master .mart_type_form_container .row .rowCol .colField{width: 58%;float:right;}
+.mart_type_master .mart_type_form_container .row .rowCol .colField input{width: 99%;float:left;}
+.mart_type_master .mart_type_form_container .row .rowCol .colField select{width: 100%;float:left;}
+.mart_type_master .mart_type_form_container .row .rowCol .colField .error{width: 100%;float:left; color: red; font-size:12px;}
+.mart_type_master .mart_type_form_container .row .rowCol_2{width: 58%;float:left; margin-left: 1%;}
+.mart_type_master .mart_type_form_container .row .rowCol_2 label{width: 40%;float:left; text-align: right;}
+.mart_type_master .mart_type_form_container .row .rowCol_2 .statusField{width: 58%;float:left;}
+.mart_type_master .mart_type_form_container .row .rowCol_2 .statusField input{width: 10%;float:left;}
+.mart_type_master .mart_type_form_container .row .rowCol_2 .statusField label{width: 50%;float:left; text-align: left;margin-top:1.5%;}
+.mart_type_master .mart_type_form_container .row .rowCol_2 .colField{width: 58%;float:right;}
+.mart_type_master .mart_type_form_container .row .rowCol_2 .colField input{width: 99%;float:left;}
+.mart_type_master .mart_type_form_container .row .rowCol_2 .colField select{width: 100%;float:left;}
+.mart_type_master .mart_type_form_container .row .rowCol_2 .colField .error{width: 100%;float:left; color: red; font-size:12px;}
+.mart_type_master .mart_type_grid_container{width: 100%;float:left;}
+
+/**typeItems.html Style Sheet **/
+.mart_typeItems_master {width: 60%;}
+.mart_typeItems_master .mart_typeItems_form_container{width: 100%;float:left;}
+.mart_typeItems_master .mart_typeItems_form_container .row{width: 100%;float:left; margin-top: 1%; height: 27px;}
+.mart_typeItems_master .mart_typeItems_form_container .row .rowCol{width: 40%;float:left; margin-left: 1%;}
+.mart_typeItems_master .mart_typeItems_form_container .row .rowCol label{width: 40%;float:left; text-align: right;}
+.mart_typeItems_master .mart_typeItems_form_container .row .rowCol .statusField{width: 58%;float:left;}
+.mart_typeItems_master .mart_typeItems_form_container .row .rowCol .statusField input{width: 10%;float:left;}
+.mart_typeItems_master .mart_typeItems_form_container .row .rowCol .statusField label{width: 50%;float:left; text-align: left;margin-top:1.5%;}
+.mart_typeItems_master .mart_typeItems_form_container .row .rowCol .colField{width: 58%;float:right;}
+.mart_typeItems_master .mart_typeItems_form_container .row .rowCol .colField input{width: 99%;float:left;}
+.mart_typeItems_master .mart_typeItems_form_container .row .rowCol .colField .descriptionBox{width: 275%;float:left;}
+.mart_typeItems_master .mart_typeItems_form_container .row .rowCol .colField select{width: 100%;float:left;}
+.mart_typeItems_master .mart_typeItems_form_container .row .rowCol .colField .error{width: 100%;float:left; color: red; font-size:12px;}
+.mart_typeItems_master .mart_typeItems_grid_container{width: 100%;float:left;}

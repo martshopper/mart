@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="martUnit"> 
+	<jta-data-source>java:jboss/datasources/ExampleDS</jta-data-source>
+	<class>com.mart.entity.Type</class>
+	<class>com.mart.entity.TypeItems</class>
+	<class>com.mart.entity.User</class>
+	<class>com.mart.entity.TaxMaster</class>
+	<class>com.mart.entity.TaxSchemeMaster</class>
+	<class>com.mart.entity.StockStatus</class>
+	<class>com.mart.entity.VendorMaster</class>
+	<class>com.mart.entity.StoreMaster</class>
+	<class>com.mart.entity.ItemType</class>
+	<class>com.mart.entity.ItemMaster</class>
+	<class>com.mart.entity.ChargeSlip</class>
+	<class>com.mart.entity.ChargeSlipDetail</class>
+	<class>com.mart.entity.Grn</class>
+	<class>com.mart.entity.GrnDetails</class>
+	<class>com.mart.entity.Modules</class>
+	<class>com.mart.entity.Credentials</class>
+	<properties>
+	<property name="hibernate.hbm2ddl.auto" value="none"/>
+	<property name="hibernate.archive.autodetection" value="class,hbm"/>
+	<property name="hibernate.show_sql" value="true"/>
+	<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect"/>
+	</properties>
+	</persistence-unit>
+</persistence>

@@ -1,0 +1,58 @@
+
+<script>
+</script>
+<div class="mart_typeItems_master">
+<fieldset>
+	<legend><h3>Type Items</h3></legend>
+	<div class="mart_typeItems_form_container">
+		<div class="row">
+			<div class="rowCol">
+				<label>Type:<font class="asterisk">*</font> </label>
+				<div class="colField">
+					<select name="type" id="type" class="text_mandatory">
+						<option value="-1">--Select--</option>
+					</select>
+					<span class="error" id="type_msg"></span>
+				</div>
+			</div>
+			<div class="rowCol">
+				<label>Code:<font class="asterisk">*</font> </label>
+				<div class="colField">
+					<input type="text" name="typeItems_code" id="typeItems_code" class="text_mandatory"></input>
+					<span class="error" id="typeItems_code_msg"></span>
+				</div>
+			</div>			
+		</div>
+		<div class="row">
+			<div class="rowCol">
+				<label>Description:<font class="asterisk">*</font> </label>
+				<div class="colField">
+					<input type="text" name="description" id="description" class="text_mandatory descriptionBox"></input>
+					<span class="error" id="description_msg"></span>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="rowCol">
+				<label>Status:</label>
+				<div class="statusField">
+					<input type="checkbox" name="status" id="status" checked></input>
+					<label for="status" id="status_label">Active</label>				
+				</div>
+			</div>		
+		</div>
+		<div class="rowButtons">
+			<input type="button" value="Save" id="btnSaveTypeItems" class="buttons"/>
+			<input type="button" value="Update" id="btnUpdateTypeItems" class="buttons"/>
+			<input type="button" value="Delete" id="btnDeleteTypeItems" class="buttons"/>
+			<input type="button" value="Search" id="btnSearchTypeItems" class="buttons"/>
+			<input type="button" value="Help" id="btnHelpTypeItems" class="help_buttons"/>
+		</div>
+	</div>
+</fieldset>
+<fieldset>
+	<legend>List of Type Item(s)</legend>
+	<div class="mart_typeItems_grid_container">
+	</div>
+</fieldset>
+</div>

@@ -1,0 +1,202 @@
+<script>
+</script>
+<div class="mart_user_master">
+<fieldset>
+	<legend><h3>User</h3></legend>
+	<div class="mart_user_form_container">
+		<div class="row">
+			<div class="rowCol">
+				<label>First Name:<font class="asterisk">*</font> </label>
+				<div class="colField">
+					<input type="text" name="first_name" id="first_name" class="text_mandatory"></input>
+					<span class="error" id="first_name_msg"></span>
+				</div>
+			</div>
+			<div class="rowCol">
+				<label>Last Name:<font class="asterisk">*</font> </label>
+				<div class="colField">
+					<input type="text" name="last_name" id="last_name" class="text_mandatory"></input>
+					<span class="error" id="last_name_msg"></span>
+				</div>
+			</div>
+			<div class="rowCol">
+				<label>Middle Name:</label>
+				<div class="colField">
+					<input type="text" name="middle_name" id="middle_name"></input>
+					<span class="error" id="middle_name_msg"></span>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="rowCol">
+				<label>Username:<font class="asterisk">*</font> </label>
+				<div class="colField">
+					<input type="text" name="username" id="username" class="text_mandatory"></input>
+					<span class="error" id="username_msg"></span>
+				</div>
+			</div>
+			<div class="rowCol">
+				<label>Password:<font class="asterisk">*</font> </label>
+				<div class="colField">
+					<input type="password" name="user_password" id="user_password" class="text_mandatory"></input>
+					<span class="error" id="user_password_msg"></span>
+				</div>
+			</div>
+			<div class="rowCol">
+				<label>Re-Enter Password:<font class="asterisk">*</font> </label>
+				<div class="colField">
+					<input type="password" name="re_user_password" id="re_user_password" class="text_mandatory"></input>
+					<span class="error" id="re_user_password_msg"></span>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="rowCol">
+				<label>DOB:<font class="asterisk">*</font></label>
+				<div class="colField">
+					<input type="text" name="datepicker" id="datepicker" class="text_mandatory"></input>
+					<span class="error" id="dob_msg"></span>
+				</div>
+			</div>
+			<div class="rowCol">
+				<label>Sex:<font class="asterisk">*</font></label>
+				<div class="colField">
+					<select name="sex" id="sex" class="text_mandatory">
+						<option value="-1">--Select--</option>
+						<option value="M">Male</option>
+						<option value="F">Female</option>
+						<option value="O">Other</option>
+					</select>
+					<span class="error" id="middle_name_msg"></span>
+				</div>
+			</div>
+			<div class="rowCol">
+				<label>Level:<font class="asterisk">*</font></label>
+				<div class="colField">
+					<select name="level" id="level" class="text_mandatory">
+						<option value="-1">--Select--</option>
+					</select>
+					<span class="error" id="level_msg"></span>
+				</div>
+			</div>					
+		</div>
+		<div class="row">
+			<div class="rowCol">
+				<label>Address: </label>
+				<div class="colField">
+					<input type="text" name="address" id="address"></input>
+					<span class="error" id="address_msg"></span>
+				</div>
+			</div>
+			<div class="rowCol">
+				<label>City:</label>
+				<div class="colField">
+					<select name="city" id="city">
+						<option value="-1">--Select--</option>
+					</select>
+					<span class="error" id="city_msg"></span>
+				</div>
+			</div>
+			<div class="rowCol">
+				<label>State:</label>
+				<div class="colField">
+					<select name="state" id="state">
+						<option value="-1">--Select--</option>
+					</select>
+					<span class="error" id="state_msg"></span>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="rowCol">
+				<label>Zip: </label>
+				<div class="colField">
+					<input type="text" name="zip" id="zip"></input>
+					<span class="error" id="zip_msg"></span>
+				</div>
+			</div>
+			<div class="rowCol">
+				<label>Email:</label>
+				<div class="colField">
+					<input type="text" name="email" id="email"></input>
+					<span class="error" id="email_msg"></span>
+				</div>
+			</div>
+			<div class="rowCol">
+				<label>Phone:</label>
+				<div class="colField">
+					<input type="text" name="phone" id="phone"></input>
+					<span class="error" id="phone_msg"></span>
+				</div>
+			</div>			
+		</div>
+		<div class="row">
+			<div class="rowCol">
+				<label>Home Phone: </label>
+				<div class="colField">
+					<input type="text" name="home_phone" id="home_phone"></input>
+					<span class="error" id="home_phone_msg"></span>
+				</div>
+			</div>
+			<div class="rowCol">
+				<label>Work Phone:</label>
+				<div class="colField">
+					<input type="text" name="work_phone" id="work_phone"></input>
+					<span class="error" id="work_phone_msg"></span>
+				</div>
+			</div>
+			<div class="rowCol">
+				<label>Fax:</label>
+				<div class="colField">
+					<input type="text" name="fax" id="fax"></input>
+					<span class="error" id="fax_msg"></span>
+				</div>
+			</div>			
+		</div>
+		<div class="row">
+			<div class="rowCol">
+				<label>SSN: </label>
+				<div class="colField">
+					<input type="text" name="ssn" id="ssn"></input>
+					<span class="error" id="ssn_msg"></span>
+				</div>
+			</div>
+			<div class="rowCol">
+				<label>Join Date:</label>
+				<div class="colField">
+					<input type="text" name="join_date" id="join_date"></input>
+					<span class="error" id="join_date_msg"></span>
+				</div>
+			</div>
+			<div class="rowCol">
+				<label>End Date:</label>
+				<div class="colField">
+					<input type="text" name="end_date" id="end_date"></input>
+					<span class="error" id="end_date_msg"></span>
+				</div>
+			</div>			
+		</div>
+		<div class="row">
+			<div class="rowCol">
+				<label>Status:</label>
+				<div class="statusField">
+					<input type="checkbox" name="status" id="status" checked></input>
+					<label for="status" id="status_label">Active</label>				
+				</div>
+			</div>		
+		</div>
+		<div class="rowButtons">
+			<input type="button" value="Save" id="btnSaveUser" class="buttons"/>
+			<input type="button" value="Update" id="btnUpdateUser" class="buttons"/>
+			<input type="button" value="Delete" id="btnDeleteUser" class="buttons"/>
+			<input type="button" value="Search" id="btnSearchUser" class="buttons"/>
+			<input type="button" value="Help" id="btnHelpUser" class="help_buttons"/>
+		</div>
+	</div>
+</fieldset>
+<fieldset>
+	<legend>List of User(s)</legend>
+	<div class="mart_user_grid_container">
+	</div>
+</fieldset>
+</div>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Practice Management System</title>
+<link rel="stylesheet" href="styles/jquery.dataTables.min.css">
+<link rel="stylesheet" href="styles/jquery-ui.css">
+<!--<link rel="stylesheet" type="text/css" href="styles/bootstrap.min.css">-->
+<link rel="stylesheet" href="styles/stylesheet.css">
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.dataTables.min.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery-1.10.2.js"></script>
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/jquery-ui.js"></script>
+<script>
+$(document).ready(function(){
+    $("#test").click(function(){
+        data = {
+			typeCode : $("#typeCode").val(),
+			typeDescription : $("#typeDescription").val()
+		};
+		$.ajax({
+			type: "POST",
+			url: "rest/type",
+			data: JSON.stringify(data),
+			contentType: "application/json; charset=utf-8",
+			dataType: "json",
+			success: function(data){alert(data);},
+			failure: function(errMsg) {
+				alert(errMsg);
+			}
+		});
+    });
+});
+function openScreen(screen_name) {
+	$("#martweb_page_container").empty();
+	if(screen_name=="Dashboard") {
+		$("#martweb_page_container").load("dashboard.html");
+	}else if(screen_name=="User") {
+		$("#martweb_page_container").load("user.html");
+	}else if(screen_name=="Owner") {
+		$("#martweb_page_container").load("owner.html");
+	}else if(screen_name=="Type") {
+		$("#martweb_page_container").load("type.html");
+	}else if(screen_name=="TypeItems") {
+		$("#martweb_page_container").load("typeItems.html");
+	}
+}
+openScreen('Dashboard');
+</script>
+</head>
+<body>
+	<div class="martweb_main">
+		<div class="martweb_header">
+			<b>Mart Web</b>
+		</div>
+		<div class="martweb_menu">
+			<ul class="drop_menu">
+				<li><a href='#' onclick="openScreen('Dashboard')">Dashboard</a></li>
+				<li><a href='#'>Setup</a>
+					<ul>
+						<li class="user"><a href='#' onclick="openScreen('User')">User</a></li>
+						<li><a href='#' onclick="openScreen('Owner')">Owner</a></li>
+						<li><a href='#' onclick="openScreen('Type')">Type</a></li>
+						<li><a href='#' onclick="openScreen('TypeItems')">Type Items</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		<div class="martweb_body">
+			<div class="martweb_page_container" id="martweb_page_container"></div>
+		</div>
+		<div class="martweb_footer">
+			
+		</div>
+	</div>
+</body>
+</html>
