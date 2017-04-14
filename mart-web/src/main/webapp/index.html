@@ -12,10 +12,9 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
-   
+   openScreen('Dashboard');
 });
 function openScreen(screen_name) {
-	console.log("ddd");
 	$("#master_container").empty();
 	if(screen_name=="Dashboard") {
 		$(".master_container").load("dashboard.html");
@@ -29,7 +28,7 @@ function openScreen(screen_name) {
 		$(".master_container").load("typeItems.html");
 	}
 }
-openScreen('Dashboard');
+
 </script>
 
 
@@ -50,7 +49,7 @@ openScreen('Dashboard');
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
 
-        <li class="active"><a href='#' onclick="openScreen('Dashboard')">Dashboard</a></li>
+        <li class=""><a href='#' onclick="openScreen('Dashboard')">Dashboard</a></li>
 		<li>
 			<a class="dropdown-toggle" data-toggle="dropdown" href="#">Setup<span class="caret"></span></a>
 			<ul class="dropdown-menu">
