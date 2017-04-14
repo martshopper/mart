@@ -1,46 +1,56 @@
-<script>
-</script>
-<div class="mart_type_master">
-<fieldset>
-	<legend><h3>Type</h3></legend>
-	<div class="mart_type_form_container">
-		<div class="row">
-			<div class="rowCol">
-				<label>Code:<font class="asterisk">*</font> </label>
-				<div class="colField">
-					<input type="text" name="type_code" id="type_code" class="text_mandatory"></input>
-					<span class="error" id="type_code_msg"></span>
-				</div>
-			</div>
-			<div class="rowCol_2">
-				<label>Description:<font class="asterisk">*</font> </label>
-				<div class="colField">
-					<input type="text" name="description" id="description" class="text_mandatory"></input>
-					<span class="error" id="description_msg"></span>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="rowCol">
-				<label>Status:</label>
-				<div class="statusField">
-					<input type="checkbox" name="status" id="status" checked></input>
-					<label for="status" id="status_label">Active</label>				
-				</div>
-			</div>		
-		</div>
-		<div class="rowButtons">
-			<input type="button" value="Save" id="btnSaveType" class="buttons"/>
-			<input type="button" value="Update" id="btnUpdateType" class="buttons"/>
-			<input type="button" value="Delete" id="btnDeleteType" class="buttons"/>
-			<input type="button" value="Search" id="btnSearchType" class="buttons"/>
-			<input type="button" value="Help" id="btnHelpType" class="help_buttons"/>
-		</div>
-	</div>
-</fieldset>
-<fieldset>
-	<legend>List of Type(s)</legend>
-	<div class="mart_type_grid_container">
-	</div>
-</fieldset>
+<div class="portlet box green">
+    <div class="portlet-title">
+        <div class="caption">
+        <i class="fa fa-gift"></i>Type </div>
+    </div>
+    <div class="portlet-body form">
+      
+       <form  class="form-horizontal">
+            <div class="form-body">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label col-sm-4">Code
+                                <span class="required" aria-required="true"> * </span>
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" placeholder="">
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label col-sm-4">Description:
+                                <span class="required" aria-required="true"> * </span>
+                            </label>
+                            <div class="col-sm-8">
+                               <input type="text" class="form-control" placeholder="">
+                                <span class="help-block">  </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-offset-4 col-sm-8">
+                                <button type="button" class="btn btn-default">Save</button>
+                                <button type="button" class="btn btn-primary">Delete</button>
+                                <button type="button" class="btn btn-primary">Reset</button>
+                                <button type="button" class="btn btn-success">Search</button>
+                                <button type="button" class="btn btn-info">Help</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
 </div>
+
+

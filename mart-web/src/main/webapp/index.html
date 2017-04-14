@@ -1,78 +1,80 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="ISO-8859-1">
-<link rel="stylesheet" href="styles/jquery.dataTables.min.css">
-<link rel="stylesheet" href="styles/jquery-ui.css">
-<!--<link rel="stylesheet" type="text/css" href="styles/bootstrap.min.css">-->
-<link rel="stylesheet" href="styles/stylesheet.css">
-<script src="js/bootstrap.min.js"></script>
-<script src="js/jquery.dataTables.min.js"></script>
-<script src="js/jquery.min.js"></script>
-<script src="js/jquery-1.10.2.js"></script>
-<script src="js/jquery-1.11.3.min.js"></script>
-<script src="js/jquery-ui.js"></script>
-<script>
+  <title>Mart</title>
+  <meta charset="utf-8">
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="styles/components.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+<script type="text/javascript">
 $(document).ready(function(){
-    $("#test").click(function(){
-        data = {
-			typeCode : $("#typeCode").val(),
-			typeDescription : $("#typeDescription").val()
-		};
-		$.ajax({
-			type: "POST",
-			url: "rest/type",
-			data: JSON.stringify(data),
-			contentType: "application/json; charset=utf-8",
-			dataType: "json",
-			success: function(data){alert(data);},
-			failure: function(errMsg) {
-				alert(errMsg);
-			}
-		});
-    });
+   
 });
 function openScreen(screen_name) {
-	$("#martweb_page_container").empty();
+	console.log("ddd");
+	$("#master_container").empty();
 	if(screen_name=="Dashboard") {
-		$("#martweb_page_container").load("dashboard.html");
+		$(".master_container").load("dashboard.html");
 	}else if(screen_name=="User") {
-		$("#martweb_page_container").load("user.html");
+		$(".master_container").load("user.html");
 	}else if(screen_name=="Owner") {
-		$("#martweb_page_container").load("owner.html");
+		$(".master_container").load("owner.html");
 	}else if(screen_name=="Type") {
-		$("#martweb_page_container").load("type.html");
+		$(".master_container").load("type.html");
 	}else if(screen_name=="TypeItems") {
-		$("#martweb_page_container").load("typeItems.html");
+		$(".master_container").load("typeItems.html");
 	}
 }
 openScreen('Dashboard');
 </script>
+
+
 </head>
 <body>
-	<div class="martweb_main">
-		<div class="martweb_header">
-			<b>Mart Web</b>
-		</div>
-		<div class="martweb_menu">
-			<ul class="drop_menu">
-				<li><a href='#' onclick="openScreen('Dashboard')">Dashboard</a></li>
-				<li><a href='#'>Setup</a>
-					<ul>
-						<li class="user"><a href='#' onclick="openScreen('User')">User</a></li>
-						<li><a href='#' onclick="openScreen('Owner')">Owner</a></li>
-						<li><a href='#' onclick="openScreen('Type')">Type</a></li>
-						<li><a href='#' onclick="openScreen('TypeItems')">Type Items</a></li>
-					</ul>
-				</li>
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">Mart</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+
+        <li class="active"><a href='#' onclick="openScreen('Dashboard')">Dashboard</a></li>
+		<li>
+			<a class="dropdown-toggle" data-toggle="dropdown" href="#">Setup<span class="caret"></span></a>
+			<ul class="dropdown-menu">
+				<li ><a href='#' onclick="openScreen('User')">User</a></li>
+				<li><a href='#' onclick="openScreen('Owner')">Owner</a></li>
+				<li><a href='#' onclick="openScreen('Type')">Type</a></li>
+				<li><a href='#' onclick="openScreen('TypeItems')">Type Items</a></li>
 			</ul>
-		</div>
-		<div class="martweb_body">
-			<div class="martweb_page_container" id="martweb_page_container"></div>
-		</div>
-		<div class="martweb_footer">
-			
-		</div>
-	</div>
+		</li>
+
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+  
+<div class="master_container container-fluid">
+  
+
+</div>
+
+
+
 </body>
 </html>
