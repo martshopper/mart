@@ -1,44 +1,90 @@
 <script type="text/javascript">
 $(document).ready(function() {
-    var table = $('#tblTypes').DataTable({
-		"processing": true,
-		"serverSide": true,
-		"paging": true,
-		"columns": [
-            { "data": "typeCode" },
-            { "data": "typeDescription" }
-        ],
-		"ajax": {
-		"url": "rest/type",
-		"dataSrc": "typeTOs",
-		"type": "GET"
-		}
-	}); 
+   function loadTypeGrid() {
+		$('#tblTypes').DataTable({
+			"processing": true,
+			"serverSide": true,
+			"paging": true,
+			"columns": [
+				{ "data": "typeCode" },
+				{ "data": "typeDescription" }
+			],
+			"ajax": {
+			"url": "rest/type",
+			"dataSrc": "typeTOs",
+			"type": "GET"
+			}
+		});
+	}
     $('#tblTypes tbody').on( 'click', 'tr', function () {
         if ($(this).hasClass('selected')) {
             $(this).removeClass('selected');
         }else {
-            table.$('tr.selected').removeClass('selected');
+            $('#tblTypes tr.selected').removeClass('selected');
             $(this).addClass('selected');
         }
     });
-	$("#btnAddUpdateType").click(function() {
-		var type = {
-			id : "",
-			typeCode : $("#typeCode").val(),
-			typeDescription : $("#typeDescription").val(),
-		};
-		$.ajax({
-            url: 'rest/type',
-            type: 'POST',
-            dataType: 'json',
-			data: JSON.stringify(type),
-            success: function (data) {
+	 $('#type_form').bootstrapValidator({
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            typeCode: {
+                validators: {
+                        stringLength: {
+                        min: 1,
+						max: 50,
+                    },
+                        notEmpty: {
+                        message: 'Please enter Code'
+                    }
+                }
             },
-			error: function (error) {
-			},            
+             typeDescription: {
+                validators: {
+                     stringLength: {
+                        min: 1,
+						max: 100,
+                    },
+                    notEmpty: {
+                        message: 'Please enter Description'
+                    }
+                }
+			}
+        }
+    }).on('success.form.bv', function(e) {
+            $('#type_form').data('bootstrapValidator').resetForm();
+            e.preventDefault();
+            var $form = $(e.target);
+            var bv = $form.data('bootstrapValidator');
+			var type = {
+				id : $("#typeId").val(),
+				typeCode : $("#typeCode").val(),
+				typeDescription : $("#typeDescription").val()
+			};
+			$.ajax({
+				url: 'rest/type',
+				type: 'POST',
+				contentType: "application/json; charset=utf-8",
+				data: JSON.stringify(type),
+				success: function (data) {
+					globalSuccesAlrt("Type Added Successfully.!");
+					$("#btnResetType").click();
+					loadTypeGrid();
+				},
+				error: function (error) {
+				},            
+			});
         });
-	});
+		$("#btnResetType").click(function() {
+			$('#type_form').data('bootstrapValidator').resetForm();
+			$("#typeId").val("");
+			$("#typeCode").val("");
+			$("#typeDescription").val("");			
+		});
+		loadTypeGrid();
 });
 </script>
 <div class="portlet box green">
@@ -46,9 +92,8 @@ $(document).ready(function() {
         <div class="caption">
         <i class="fa fa-gift"></i>Type </div>
     </div>
-    <div class="portlet-body form">
-      
-       <form  class="form-horizontal">
+    <div class="portlet-body form">		
+       <form  class="form-horizontal" id="type_form">
             <div class="form-body">
                 <div class="row">
                     <div class="col-sm-6">
@@ -57,8 +102,7 @@ $(document).ready(function() {
                                 <span class="required" aria-required="true"> * </span>
                             </label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" placeholder="Enter Code" id="typeCode">
-                                <span class="help-block"></span>
+                                <input type="text" class="form-control" placeholder="Enter Code" id="typeCode" name="typeCode">
                             </div>
                         </div>
                     </div>
@@ -68,8 +112,7 @@ $(document).ready(function() {
                                 <span class="required" aria-required="true"> * </span>
                             </label>
                             <div class="col-sm-8">
-                               <input type="text" class="form-control" placeholder="Enter Description" id="typeDescription">
-                                <span class="help-block">  </span>
+                               <input type="text" class="form-control" placeholder="Enter Description" id="typeDescription" name="typeDescription">
                             </div>
                         </div>
                     </div>
@@ -80,16 +123,17 @@ $(document).ready(function() {
                     <div class="col-sm-12">
                         <div class="row">
                             <div class="col-sm-offset-4 col-sm-8">
-                                <button type="button" id="btnAddUpdateType" class="btn btn-default">Save</button>
-                                <button type="button" id="btnDeleteType" class="btn btn-primary">Delete</button>
-                                <button type="button" id="btnResetType" class="btn btn-primary">Reset</button>
+                                <button type="submit" id="btnAddUpdateType" class="btn btn-success">Save</button>
+                                <button type="button" id="btnDeleteType" class="btn btn-success">Delete</button>
+                                <button type="button" id="btnResetType" class="btn btn-success">Reset</button>
                                 <button type="button" id="btnSearchType" class="btn btn-success">Search</button>
-                                <button type="button" id="btnHelpType" class="btn btn-info">Help</button>
+                                <button type="button" id="btnHelpType" class="btn btn-success">Help</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+			<input type="hidden" name="typeId" value="" />
         </form>
     </div>
 </div>
