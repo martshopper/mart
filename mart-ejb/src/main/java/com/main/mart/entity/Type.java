@@ -41,7 +41,7 @@ public class Type implements Serializable{
     
     @Enumerated(EnumType.STRING)
     @Column(name="STATUS", nullable=false)
-    private StatusEnum statusEnum;
+    private StatusEnum status;
 
 	public Integer getId() {
 		return id;
@@ -67,12 +67,12 @@ public class Type implements Serializable{
 		this.typeDescription = typeDescription;
 	}
 
-	public StatusEnum getStatusEnum() {
-		return statusEnum;
+	public StatusEnum getStatus() {
+		return status;
 	}
 
-	public void setStatusEnum(StatusEnum statusEnum) {
-		this.statusEnum = statusEnum;
+	public void setStatus(StatusEnum status) {
+		this.status = status;
 	}
     
 }

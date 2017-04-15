@@ -7,7 +7,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ws.rs.core.Response;
 
-import com.main.mart.dto.UserTO;
+import com.main.mart.common.dto.UserTO;
 import com.main.mart.ejb.UserEJBIf;
 import com.main.mart.entity.User;
 

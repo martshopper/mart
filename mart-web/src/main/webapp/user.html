@@ -1,3 +1,13 @@
+<script>
+$(document).ready(function() {
+    $('#datePicker')
+        .datepicker({
+            format: 'mm/dd/yyyy'
+        })
+        .on('changeDate', function(e) {
+        });
+});
+</script>
 <div class="portlet box green">
     <div class="portlet-title">
         <div class="caption">
@@ -84,9 +94,12 @@
                             <label class="control-label col-sm-4">DOB:
                                 <span class="required" aria-required="true"> * </span>
                             </label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" placeholder="">
-                                <span class="help-block"></span>
+                            <div class="col-sm-8 date">
+								<div class="input-group input-append date" id="datePicker">
+									<input type="text" class="form-control" placeholder="" name="date">
+									<span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+									
+								</div>
                             </div>
                         </div>
                     </div>
@@ -247,5 +260,3 @@
         </form>
     </div>
 </div>
-
-

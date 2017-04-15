@@ -2,21 +2,25 @@
 <html lang="en">
 <head>
   <title>Mart</title>
-  <meta charset="utf-8">
-  
+  <meta charset="utf-8">  
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.min.css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker3.min.css" />
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/dataTables.bootstrap.min.css" />
   <link rel="stylesheet" href="styles/components.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>  
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.min.js"></script>
 
 <script type="text/javascript">
 $(document).ready(function(){
    openScreen('Dashboard');
 });
 function openScreen(screen_name) {
-	$("#master_container").empty();
+	$(".master_container").empty();
 	if(screen_name=="Dashboard") {
 		$(".master_container").load("dashboard.html");
 	}else if(screen_name=="User") {
@@ -31,11 +35,8 @@ function openScreen(screen_name) {
 }
 
 </script>
-
-
 </head>
 <body>
-
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -51,6 +52,13 @@ function openScreen(screen_name) {
       <ul class="nav navbar-nav">
 
         <li class=""><a href='#' onclick="openScreen('Dashboard')">Dashboard</a></li>
+		<li>
+			<a class="dropdown-toggle" data-toggle="dropdown" href="#">Billing<span class="caret"></span></a>
+			<ul class="dropdown-menu">
+				<li ><a href='#' onclick="openScreen('ChargeSlip')">Search Charge Slip</a></li>
+				<li><a href='#' onclick="openScreen('Receipt')">Search Receipt</a></li>
+			</ul>
+		</li>
 		<li>
 			<a class="dropdown-toggle" data-toggle="dropdown" href="#">Setup<span class="caret"></span></a>
 			<ul class="dropdown-menu">
@@ -70,11 +78,6 @@ function openScreen(screen_name) {
 </nav>
   
 <div class="master_container container-fluid">
-  
-
 </div>
-
-
-
 </body>
 </html>

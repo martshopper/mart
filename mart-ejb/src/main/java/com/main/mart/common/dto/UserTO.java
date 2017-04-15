@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.main.mart.dto;
+package com.main.mart.common.dto;
 
 /**
  * @author Hitesh
