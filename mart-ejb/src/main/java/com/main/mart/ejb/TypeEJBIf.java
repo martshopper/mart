@@ -18,4 +18,5 @@ public interface TypeEJBIf {
 	public ResponseStatus updateType(Type type);
 	public Type getTypeById(Integer id);
 	public Collection<Type> getTypes(TypeTO typeTO);
+	public ResponseStatus deleteType(Integer id);
 }

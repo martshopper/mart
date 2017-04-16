@@ -68,6 +68,9 @@ public class TypeImpl implements TypeIf {
 		try {
 			if(typeTO != null) {
 				Type type = new Type();
+				if(typeTO.getId() != null) {
+					type.setId(Integer.parseInt(typeTO.getId()));
+				}
 				type.setTypeCode(typeTO.getTypeCode());
 				type.setTypeDescription(typeTO.getTypeDescription());
 				type.setStatus(StatusEnum.A);
@@ -77,18 +80,15 @@ public class TypeImpl implements TypeIf {
 					builder = Response.ok(response);
 				}else {
 					response.put("exception", responseStatus.getErrorMessage());
-					builder = Response.ok(response);
+					builder = Response.status(400).entity(response);
 				}
 			}
 		}catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 		return builder.build();
 	}
 
-	/* (non-Javadoc)
-	 * @see com.main.mart.rest.TypeIf#updateType(java.lang.Integer, com.main.mart.dto.TypeTO)
-	 */
 	@Override
 	public TypeTO getTypeById(Integer id) {
 		TypeTO typeTO = new TypeTO();
@@ -102,6 +102,23 @@ public class TypeImpl implements TypeIf {
 			e.printStackTrace();
 		}
 		return typeTO;
+	}
+
+	@Override
+	public Response deleteType(Integer id) {
+		Map<String, String> response = new HashMap<String, String>();
+		try {
+			ResponseStatus responseStatus = typeEJBIf.deleteType(id);
+			if(responseStatus.getStatus()) {
+				builder = Response.ok(response);
+			}else {
+				response.put("exception", responseStatus.getErrorMessage());
+				builder = Response.status(400).entity(response);
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return builder.build();
 	}
 	
 

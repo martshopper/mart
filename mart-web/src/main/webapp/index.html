@@ -48,7 +48,7 @@ toastr.options = {
   "debug": false,
   "newestOnTop": false,
   "progressBar": false,
-  "positionClass": "toast-bottom-center",
+  "positionClass": "toast-bottom-left",
   "preventDuplicates": false,
   "onclick": null,
   "showDuration": "300",
@@ -61,8 +61,14 @@ toastr.options = {
   "hideMethod": "fadeOut"
 }
 
-function globalSuccesAlrt(message) {
+function globalSuccessAlert(message) {
     toastr.success(message, "Success");
+}
+function globalErrorAlert(message) {
+    toastr.error(message, "Error");
+}
+function globalWarningAlert(message) {
+    toastr.warning(message, "Warning");
 }
 </script>
 </head>

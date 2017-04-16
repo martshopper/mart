@@ -3,6 +3,7 @@
  */
 package com.main.mart.rest;
 
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -35,4 +36,9 @@ public interface TypeIf {
 	@Path("/type/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public TypeTO getTypeById(@PathParam("id") Integer id);
+	
+	@DELETE
+	@Path("/type/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response deleteType(@PathParam("id") Integer id);
 }
