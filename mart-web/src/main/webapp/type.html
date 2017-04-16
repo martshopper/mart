@@ -5,8 +5,9 @@ $(document).ready(function() {
    function loadTypeGrid() {
 		$('#tblTypes').DataTable({
 			"processing": true,
-			"serverSide": true,
+			"serverSide": false,
 			"paging": true,
+            "destroy": true,
             dom: 'Bfrtip',
             buttons: [{
                 extend: "print",
@@ -41,7 +42,7 @@ $(document).ready(function() {
         feedbackIcons: {
             valid: 'glyphicon glyphicon-ok',
             invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'
+            //validating: 'glyphicon glyphicon-refresh'
         },
         fields: {
             typeCode: {
