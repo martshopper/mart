@@ -5,7 +5,6 @@ package com.main.mart.rest;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -32,8 +31,8 @@ public interface TypeIf {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response addType(TypeTO typeTO);
 	
-	@PUT
+	@GET
 	@Path("/type/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response updateType(@PathParam("id") Integer id, TypeTO typeTO);
+	public TypeTO getTypeById(@PathParam("id") Integer id);
 }

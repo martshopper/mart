@@ -1,12 +1,12 @@
 <script type="text/javascript">
-
-
-$(document).ready(function() {
+$(document).ready(function() {	
    function loadTypeGrid() {
 		$('#tblTypes').DataTable({
-			"processing": true,
+			"processing": false,
+			"searching": false,
 			"serverSide": true,
 			"paging": true,
+			"orderCellsTop": true,
             dom: 'Bfrtip',
             buttons: [{
                 extend: "print",
@@ -19,8 +19,12 @@ $(document).ready(function() {
                 className: "btn default"
             }],
 			"columns": [
-				{ "data": "typeCode" },
-				{ "data": "typeDescription" }
+				{ "data": "id", "render": function ( data, type, row ) {
+						return '<i class="glyphicon glyphicon-pencil btn btn-sm" onclick="showType('+data+')"/>';
+					}
+				},
+				{ "data": "typeCode","orderable": "true"},
+				{ "data": "typeDescription", "orderable": "true" }				
 			],
 			"ajax": {
 			"url": "rest/type",
@@ -37,7 +41,7 @@ $(document).ready(function() {
             $(this).addClass('selected');
         }
     });
-	 $('#type_form').bootstrapValidator({
+	$('#type_form').bootstrapValidator({
         feedbackIcons: {
             valid: 'glyphicon glyphicon-ok',
             invalid: 'glyphicon glyphicon-remove',
@@ -97,8 +101,18 @@ $(document).ready(function() {
 			$("#typeCode").val("");
 			$("#typeDescription").val("");			
 		});
-		loadTypeGrid();
+		loadTypeGrid();		
 });
+function showType(id) {
+	$.ajax({
+			url: 'rest/type/'+id,
+			type: 'GET',
+			success: function (data) {
+			},
+			error: function (error) {
+			},            
+	});
+}
 </script>
 <div class="portlet box green">
     <div class="portlet-title">
@@ -160,11 +174,11 @@ $(document).ready(function() {
 	    <table class="table table-striped table-bordered table-hover dt-responsive" width="100%" id="tblTypes" cellspacing="0" width="100%">
             <thead>
                 <tr>
-                    <th>Type Code</th>
-                    <th>Type Description</th>
+                    <th width="1%"></th>
+                    <th width="30%">Type Code</th>
+                    <th width="69%">Type Description</th>
                 </tr>
             </thead>
         </table>
     </div>
 </div>
-

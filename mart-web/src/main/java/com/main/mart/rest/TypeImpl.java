@@ -90,9 +90,18 @@ public class TypeImpl implements TypeIf {
 	 * @see com.main.mart.rest.TypeIf#updateType(java.lang.Integer, com.main.mart.dto.TypeTO)
 	 */
 	@Override
-	public Response updateType(Integer id, TypeTO typeTO) {
-		// TODO Auto-generated method stub
-		return null;
+	public TypeTO getTypeById(Integer id) {
+		TypeTO typeTO = new TypeTO();
+		try {
+			Type type = typeEJBIf.getTypeById(id);
+			typeTO.setId(type.getId().toString());
+			typeTO.setTypeCode(type.getTypeCode());
+			typeTO.setTypeDescription(type.getTypeDescription());
+			typeTO.setStatus(type.getStatus().toString());
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return typeTO;
 	}
 	
 
