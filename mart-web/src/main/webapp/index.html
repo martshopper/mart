@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="plugins/Datatables/dataTables.bootstrap.min.css" />
   <link rel="stylesheet" href="plugins/bootstrapValidator/bootstrapValidator.css" />
   <link rel="stylesheet" type="text/css" href="plugins/DataTables/datatables.min.css"/>
+  <link rel="stylesheet" type="text/css" href="plugins/toastr/toastr.min.css"/>
 
   <link rel="stylesheet" href="styles/components.min.css"/>
  <link rel="stylesheet" href="styles/stylesheet.css"/>
@@ -18,7 +19,7 @@
  <script type="text/javascript" src="plugins/DataTables/datatables.min.js"></script>
 
   <script src="plugins/Datatables/dataTables.bootstrap.min.js"></script>
-
+  <script src="plugins/toastr/toastr.min.js"></script>
   <script src="plugins/bootstrapDatepicker/bootstrap-datepicker.min.js"></script>
   <script src="plugins/bootstrapValidator/bootstrapValidator.min.js"></script>
 <script type="text/javascript">
@@ -39,11 +40,29 @@ function openScreen(screen_name) {
 		$(".master_container").load("typeItems.html");
 	}
 }
+
+
+// configuration: http://codeseven.github.io/toastr/demo.html
+toastr.options = {
+  "closeButton": true,
+  "debug": false,
+  "newestOnTop": false,
+  "progressBar": false,
+  "positionClass": "toast-bottom-center",
+  "preventDuplicates": false,
+  "onclick": null,
+  "showDuration": "300",
+  "hideDuration": "1000",
+  "timeOut": "3000",
+  "extendedTimeOut": "1000",
+  "showEasing": "swing",
+  "hideEasing": "linear",
+  "showMethod": "fadeIn",
+  "hideMethod": "fadeOut"
+}
+
 function globalSuccesAlrt(message) {
-    var x = document.getElementById("snackbar")
-	$("#snackbar").html('<i class="glyphicon glyphicon-ok"/> '+message);
-    x.className = "show";
-    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+    toastr.success(message, "Success");
 }
 </script>
 </head>
@@ -90,6 +109,6 @@ function globalSuccesAlrt(message) {
   
 <div class="master_container container-fluid">
 </div>
-<div id="snackbar"></div>
+
 </body>
 </html>
