@@ -12,5 +12,6 @@ import com.main.mart.utilities.ResponseStatus;
  */
 public interface UserEJBIf {
 	
-	public ResponseStatus addUser(User user);
+	public ResponseStatus addUpdateUser(User user);
+	public User getUserById(Integer id);
 }

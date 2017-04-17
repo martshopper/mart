@@ -21,12 +21,17 @@ public class UserEJBImpl implements UserEJBIf {
 	private EntityManager em;
 	
 	@Override
-	public ResponseStatus addUser(User user) {
+	public ResponseStatus addUpdateUser(User user) {
 		ResponseStatus responseStatus = new ResponseStatus();
 		try {
 			if(user != null) {
-				em.persist(user);
-				em.flush();
+				if(user.getId() != null) {
+					em.merge(user);
+					em.flush();
+				}else {
+					em.persist(user);
+					em.flush();
+				}
 				responseStatus.setStatus(true);
 				responseStatus.setPersistingId(user.getId());
 			}
@@ -36,6 +41,12 @@ public class UserEJBImpl implements UserEJBIf {
 			e.printStackTrace();
 		}
 		return responseStatus;
+	}
+
+	@Override
+	public User getUserById(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
