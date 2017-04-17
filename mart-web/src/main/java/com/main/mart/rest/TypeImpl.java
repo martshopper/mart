@@ -85,6 +85,8 @@ public class TypeImpl implements TypeIf {
 			}
 		}catch (Exception e) {
 			e.printStackTrace();
+			response.put("exception", e.getMessage());
+			builder = Response.status(400).entity(response);
 		}
 		return builder.build();
 	}
@@ -117,6 +119,8 @@ public class TypeImpl implements TypeIf {
 			}
 		}catch (Exception e) {
 			e.printStackTrace();
+			response.put("exception", e.getMessage());
+			builder = Response.status(400).entity(response);
 		}
 		return builder.build();
 	}
