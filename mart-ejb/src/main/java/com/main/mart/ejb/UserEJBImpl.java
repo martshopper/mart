@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import com.main.mart.entity.User;
+import com.main.mart.utilities.MartUtilities;
 import com.main.mart.utilities.ResponseStatus;
 
 /**
@@ -26,9 +27,13 @@ public class UserEJBImpl implements UserEJBIf {
 		try {
 			if(user != null) {
 				if(user.getId() != null) {
+					user.setUpdatedCount(user.getUpdatedCount()+1);
+					user.setLastUpdatedDateTime(MartUtilities.getCurrentDateTime());
 					em.merge(user);
 					em.flush();
 				}else {
+					user.setUpdatedCount(0);
+					user.setCreatedDateTime(MartUtilities.getCurrentDateTime());
 					em.persist(user);
 					em.flush();
 				}

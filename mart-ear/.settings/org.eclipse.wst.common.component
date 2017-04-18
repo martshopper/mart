@@ -5,6 +5,9 @@
         <dependent-module archiveName="mart-ejb-1.0-SNAPSHOT.jar" deploy-path="/" handle="module:/resource/mart-ejb/mart-ejb">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="commons-codec-1.10.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/commons-codec/commons-codec/1.10/commons-codec-1.10.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <dependent-module archiveName="persistence-api-1.0.2.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/javax/persistence/persistence-api/1.0.2/persistence-api-1.0.2.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
