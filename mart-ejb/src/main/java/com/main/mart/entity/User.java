@@ -114,7 +114,7 @@ public class User implements Serializable{
 	    
 	    @Enumerated(EnumType.STRING)
 	    @Column(name="STATUS",columnDefinition = "enum ('A', 'I') default 'A'", nullable=false)
-	    private StatusEnum statusEnum;
+	    private StatusEnum status;
 	    
 	    @Column(name="UPDATED_COUNT", columnDefinition = "int default 0")
 		private Integer updatedCount;
@@ -304,12 +304,12 @@ public class User implements Serializable{
 			this.state = state;
 		}
 
-		public StatusEnum getStatusEnum() {
-			return statusEnum;
+		public StatusEnum getStatus() {
+			return status;
 		}
 
-		public void setStatusEnum(StatusEnum statusEnum) {
-			this.statusEnum = statusEnum;
+		public void setStatus(StatusEnum status) {
+			this.status = status;
 		}
 
 		public Integer getUpdatedCount() {

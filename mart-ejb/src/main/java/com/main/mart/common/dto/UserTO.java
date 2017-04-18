@@ -12,6 +12,7 @@ public class UserTO {
 	private String address;
 	private String city;
 	private String createdBy;
+	private String createdByName;
 	private String createdDateTime;
 	private String dob;
 	private String email;
@@ -30,6 +31,7 @@ public class UserTO {
 	private String state;
 	private String status;
 	private String updatedBy;
+	private String updatedByName;
 	private String updatedDateTime;
 	private String username;
 	private String workPhone;
@@ -57,6 +59,12 @@ public class UserTO {
 	}
 	public void setCreatedBy(String createdBy) {
 		this.createdBy = createdBy;
+	}
+	public String getCreatedByName() {
+		return createdByName;
+	}
+	public void setCreatedByName(String createdByName) {
+		this.createdByName = createdByName;
 	}
 	public String getCreatedDateTime() {
 		return createdDateTime;
@@ -165,6 +173,12 @@ public class UserTO {
 	}
 	public void setUpdatedBy(String updatedBy) {
 		this.updatedBy = updatedBy;
+	}
+	public String getUpdatedByName() {
+		return updatedByName;
+	}
+	public void setUpdatedByName(String updatedByName) {
+		this.updatedByName = updatedByName;
 	}
 	public String getUpdatedDateTime() {
 		return updatedDateTime;

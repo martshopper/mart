@@ -3,6 +3,8 @@
  */
 package com.main.mart.rest;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -53,7 +55,7 @@ public class UserImpl implements UserIf {
 					user.setCity(null);
 				}
 				if(!StringUtils.isNullOrEmpty(userTO.getDob())) {
-					user.setDob(null);//TODO
+					user.setDob(MartUtilities.cnvtUIStringDateToDate(userTO.getDob()));
 				}else {
 					user.setDob(null);
 				}
@@ -61,7 +63,7 @@ public class UserImpl implements UserIf {
 					user.setEmail(userTO.getEmail());
 				}
 				if(!StringUtils.isNullOrEmpty(userTO.getEndDate())) {
-					user.setEndDate(null);
+					user.setEndDate(MartUtilities.cnvtUIStringDateToDate(userTO.getEndDate()));
 				}
 				if(!StringUtils.isNullOrEmpty(userTO.getFax())) {
 					user.setFax(userTO.getFax());
@@ -73,7 +75,7 @@ public class UserImpl implements UserIf {
 					user.setHphone(userTO.getHomePhone());
 				}
 				if(!StringUtils.isNullOrEmpty(userTO.getJoinDate())) {
-					user.setJoinDate(null);
+					user.setJoinDate(MartUtilities.cnvtUIStringDateToDate(userTO.getJoinDate()));
 				}
 				if(!StringUtils.isNullOrEmpty(userTO.getLastName())) {
 					user.setLastName(userTO.getLastName());
@@ -110,7 +112,7 @@ public class UserImpl implements UserIf {
 				if(!StringUtils.isNullOrEmpty(userTO.getZip())) {
 					user.setZip(userTO.getZip());
 				}
-				user.setStatusEnum(StatusEnum.A);
+				user.setStatus(StatusEnum.A);
 				ResponseStatus responseStatus = userEJBIf.addUpdateUser(user);
 				if(responseStatus.getStatus()) {
 					response.put("id", ""+responseStatus.getPersistingId());
@@ -130,25 +132,151 @@ public class UserImpl implements UserIf {
 	@Override
 	public UserTOs getAllUsers(String username, String firstName, String lastName, String middleName, String phone,
 			String dob, String sex, String level) {
-		// TODO Auto-generated method stub
-		return null;
+		UserTOs userTOs = new UserTOs();
+		try {
+			UserTO userTO = new UserTO();
+			userTO.setUsername(username);
+			userTO.setFirstName(firstName);
+			userTO.setLastName(lastName);
+			userTO.setMiddleName(middleName);
+			userTO.setPhone(phone);
+			userTO.setDob(dob);
+			userTO.setSex(sex);
+			userTO.setLevel(level);
+			Collection<UserTO> colUsers = new ArrayList<UserTO>();
+			Collection<User> users = userEJBIf.getAllUsers(userTO);
+			if(users != null && !users.isEmpty()) {
+				for(User user : users) {
+					UserTO userTo = this.transformUserEntityToUserTO(user);
+					if(userTo != null) {
+						colUsers.add(userTo);
+					}
+				}
+			}
+			userTOs.setDraw("1");
+			userTOs.setRecordsFiltered(colUsers.size()+"");
+			userTOs.setRecordsTotal(colUsers.size()+"");
+			userTOs.setUserTOs(colUsers);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return userTOs;
 	}
 
 	@Override
 	public UserTO getUserById(Integer id) {
-		// TODO Auto-generated method stub
+		try {
+			User user = userEJBIf.getUserById(id);
+			return this.transformUserEntityToUserTO(user);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 
 	@Override
 	public Response deleteType(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		Map<String, String> response = new HashMap<String, String>();
+		try {
+			ResponseStatus responseStatus = userEJBIf.deleteUser(id);
+			if(responseStatus.getStatus()) {
+				builder = Response.ok(response);
+			}else {
+				response.put("exception", responseStatus.getErrorMessage());
+				builder = Response.status(400).entity(response);
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+			response.put("exception", e.getMessage());
+			builder = Response.status(400).entity(response);
+		}
+		return builder.build();
 	}
 	
 	private UserTO transformUserEntityToUserTO(User user) {
 		try {
-			UserTO userTO = new UserTO();
+			if(user != null) {
+				UserTO userTO = new UserTO();
+				userTO.setId(user.getId().toString());
+				if(!StringUtils.isNullOrEmpty(user.getAddress())) {
+					userTO.setAddress(user.getAddress());
+				}
+				if(!StringUtils.isNullOrEmpty(user.getCity())) {
+					userTO.setCity(user.getCity());
+				}
+				if(!StringUtils.isNullOrEmpty(user.getEmail())) {
+					userTO.setEmail(user.getEmail());
+				}
+				if(!StringUtils.isNullOrEmpty(user.getFax())) {
+					userTO.setFax(user.getFax());
+				}
+				if(!StringUtils.isNullOrEmpty(user.getFirstName())) {
+					userTO.setFirstName(user.getFirstName());
+				}
+				if(!StringUtils.isNullOrEmpty(user.getHphone())) {
+					userTO.setHomePhone(user.getHphone());
+				}
+				if(!StringUtils.isNullOrEmpty(user.getLastName())) {
+					userTO.setLastName(user.getLastName());
+				}
+				if(!StringUtils.isNullOrEmpty(user.getMiddleName())) {
+					userTO.setMiddleName(user.getMiddleName());
+				}
+				if(!StringUtils.isNullOrEmpty(user.getPhone())) {
+					userTO.setPhone(user.getPhone());
+				}
+				if(!StringUtils.isNullOrEmpty(user.getSsn())) {
+					userTO.setSsn(user.getSsn());
+				}
+				if(!StringUtils.isNullOrEmpty(user.getState())) {
+					userTO.setState(user.getState());
+				}
+				if(!StringUtils.isNullOrEmpty(user.getUserName())) {
+					userTO.setUsername(user.getUserName());
+				}
+				if(!StringUtils.isNullOrEmpty(user.getWphone())) {
+					userTO.setWorkPhone(user.getWphone());
+				}
+				if(!StringUtils.isNullOrEmpty(user.getZip())) {
+					userTO.setZip(user.getZip());
+				}
+				if(user.getCreatedBy() != null) {
+					userTO.setCreatedBy(user.getCreatedBy().getId().toString());
+					userTO.setCreatedByName(MartUtilities.getUserFullName(user.getCreatedBy()));
+				}
+				if(user.getCreatedDateTime() != null) {
+					userTO.setCreatedDateTime(MartUtilities.cnvtDBDateTimeToUIDateTime(user.getCreatedDateTime()));
+				}
+				if(user.getDob() != null) {
+					userTO.setDob(MartUtilities.cnvtDBDateToUIDate(user.getDob()));
+				}
+				if(user.getEndDate() != null) {
+					userTO.setEndDate(MartUtilities.cnvtDBDateToUIDate(user.getEndDate()));
+				}
+				if(user.getJoinDate() != null) {
+					userTO.setJoinDate(MartUtilities.cnvtDBDateToUIDate(user.getJoinDate()));
+				}
+				if(user.getLevel() != null) {
+					userTO.setLevel(user.getLevel().getId().toString());
+				}
+				if(user.getSex() != null) {
+					userTO.setSex(user.getSex().toString());
+				}
+				if(user.getStatus() != null) {
+					userTO.setStatus(user.getStatus().toString());
+				}
+				if(user.getLastUpdatedBy() != null) {
+					userTO.setUpdatedBy(user.getLastUpdatedBy().getId().toString());
+					userTO.setUpdatedByName(MartUtilities.getUserFullName(user.getLastUpdatedBy()));
+				}
+				if(user.getLastUpdatedDateTime() != null) {
+					userTO.setUpdatedDateTime(MartUtilities.cnvtDBDateTimeToUIDateTime(user.getLastUpdatedDateTime()));
+				}
+				if(!StringUtils.isNullOrEmpty(user.getPassword())) {
+					userTO.setPassword(MartUtilities.decrypt(user.getPassword()));
+				}
+				return userTO;
+			}
 		}catch (Exception e) {
 			e.printStackTrace();
 		}return null;
