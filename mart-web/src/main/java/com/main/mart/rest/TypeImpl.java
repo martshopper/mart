@@ -19,6 +19,7 @@ import com.main.mart.ejb.TypeEJBIf;
 import com.main.mart.entity.Type;
 import com.main.mart.utilities.ResponseStatus;
 import com.main.mart.utilities.StatusEnum;
+import com.main.mart.utilities.StringUtils;
 
 /**
  * @author Hitesh
@@ -68,7 +69,7 @@ public class TypeImpl implements TypeIf {
 		try {
 			if(typeTO != null) {
 				Type type = new Type();
-				if(typeTO.getId() != null) {
+				if(!StringUtils.isNullOrEmpty(typeTO.getId())) {
 					type.setId(Integer.parseInt(typeTO.getId()));
 				}
 				type.setTypeCode(typeTO.getTypeCode());
