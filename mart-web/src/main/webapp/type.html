@@ -1,7 +1,8 @@
 <script type="text/javascript">
+var typeDatatable;
 $(document).ready(function() {	
    function loadTypeGrid() {
-		$('#tblTypes').DataTable({
+		typeDatatable = $('#tblTypes').DataTable({
 			"processing": false,
 			"searching": false,
 			"serverSide": true,
@@ -36,14 +37,22 @@ $(document).ready(function() {
 			}
 		});
 	}
-    $('#tblTypes tbody').on( 'click', 'tr', function () {
-        if ($(this).hasClass('selected')) {
-            $(this).removeClass('selected');
-        }else {
-            $('#tblTypes tr.selected').removeClass('selected');
-            $(this).addClass('selected');
+
+
+   
+    $('#tblTypes').on( 'click', 'tr', function () {
+        if ( !$(this).hasClass('selected') ) {
+            typeDatatable.$('tr.selected').removeClass('selected');
+            if($(this).hasClass("odd") || $(this).hasClass("even")){
+                $(this).addClass('selected');
+            }
         }
     });
+
+
+   
+
+  
 	$('#type_form').bootstrapValidator({
         feedbackIcons: {
             valid: 'glyphicon glyphicon-ok',
@@ -103,6 +112,9 @@ $(document).ready(function() {
 				},            
 			});
         });
+
+
+
 		$("#btnResetType").click(function() {
 			$('#type_form').data('bootstrapValidator').resetForm();
 			$("#typeId").val("");
@@ -110,6 +122,8 @@ $(document).ready(function() {
 			$("#typeDescription").val("");
 			$("#btnAddUpdateType").text("Save");
 		});
+
+
 		loadTypeGrid();
 		$("#btnDeleteType").click(function() {
 			if($("#typeId").val() != "") {
