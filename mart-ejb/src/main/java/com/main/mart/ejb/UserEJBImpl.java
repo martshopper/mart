@@ -14,7 +14,9 @@ import com.main.mart.common.dto.UserTO;
 import com.main.mart.entity.User;
 import com.main.mart.utilities.MartUtilities;
 import com.main.mart.utilities.ResponseStatus;
+import com.main.mart.utilities.SexEnum;
 import com.main.mart.utilities.StatusEnum;
+import com.main.mart.utilities.StringUtils;
 
 /**
  * @author Hitesh
@@ -68,8 +70,56 @@ public class UserEJBImpl implements UserEJBIf {
 		try {
 			StringBuilder hqlBuilder = new StringBuilder();
 			hqlBuilder.append("SELECT u FROM User u WHERE u.status=:status");
+			if(!StringUtils.isNullOrEmpty(userTO.getUsername())){
+				hqlBuilder.append(" AND u.userName LIKE :username");
+			}
+			if(!StringUtils.isNullOrEmpty(userTO.getFirstName())){
+				hqlBuilder.append(" AND u.firstName LIKE :firstName");
+			}
+			if(!StringUtils.isNullOrEmpty(userTO.getLastName())){
+				hqlBuilder.append(" AND u.lastName LIKE :lastName");
+			}
+			if(!StringUtils.isNullOrEmpty(userTO.getMiddleName())){
+				hqlBuilder.append(" AND u.middleName LIKE :middleName");
+			}
+			if(!StringUtils.isNullOrEmpty(userTO.getPhone())){
+				hqlBuilder.append(" AND u.phone LIKE :phone");
+			}
+			if(!StringUtils.isNullOrEmpty(userTO.getDob())){
+				hqlBuilder.append(" AND u.dob = :dob");
+			}
+			if(!StringUtils.isNullOrEmpty(userTO.getSex())){
+				hqlBuilder.append(" AND u.sex = :sex");
+			}
+			if(!StringUtils.isNullOrEmpty(userTO.getLevel())){
+				hqlBuilder.append(" AND u.level.id = :level");
+			}
 			TypedQuery<User> typedQuery = em.createQuery(hqlBuilder.toString(), User.class);
 			typedQuery.setParameter("status", StatusEnum.A);
+			if(!StringUtils.isNullOrEmpty(userTO.getUsername())){
+				typedQuery.setParameter("username", userTO.getUsername().concat("%"));
+			}
+			if(!StringUtils.isNullOrEmpty(userTO.getFirstName())){
+				typedQuery.setParameter("firstName", userTO.getFirstName().concat("%"));
+			}
+			if(!StringUtils.isNullOrEmpty(userTO.getLastName())){
+				typedQuery.setParameter("lastName", userTO.getLastName().concat("%"));
+			}
+			if(!StringUtils.isNullOrEmpty(userTO.getMiddleName())){
+				typedQuery.setParameter("middleName", userTO.getMiddleName().concat("%"));
+			}
+			if(!StringUtils.isNullOrEmpty(userTO.getPhone())){
+				typedQuery.setParameter("phone", userTO.getPhone().concat("%"));
+			}
+			if(!StringUtils.isNullOrEmpty(userTO.getDob())){
+				typedQuery.setParameter("dob", MartUtilities.cnvtUIStringDateToDate(userTO.getDob()));
+			}
+			if(!StringUtils.isNullOrEmpty(userTO.getSex())){
+				typedQuery.setParameter("sex", SexEnum.valueOf(userTO.getSex()));
+			}
+			if(!StringUtils.isNullOrEmpty(userTO.getLevel())){
+				typedQuery.setParameter("level", Integer.parseInt(userTO.getLevel()));
+			}
 			return typedQuery.getResultList();
 		}catch (Exception e) {
 			e.printStackTrace();
