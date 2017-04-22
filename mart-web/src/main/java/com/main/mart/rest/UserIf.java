@@ -13,7 +13,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import com.main.mart.common.dto.UserTO;
-import com.main.mart.common.dto.UserTOs;
+import com.main.mart.dto.UserTOs;
 
 /**
  * @author Hitesh

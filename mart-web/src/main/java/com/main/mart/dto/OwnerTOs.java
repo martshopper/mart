@@ -1,20 +1,21 @@
 /**
  * 
  */
-package com.main.mart.common.dto;
+package com.main.mart.dto;
 
 import java.util.Collection;
+
+import com.main.mart.common.dto.OwnerTO;
 
 /**
  * @author Hitesh
  *
  */
-public class TypeTOs {
+public class OwnerTOs {
 	private String draw;
 	private String recordsTotal;
 	private String recordsFiltered;
-	private Collection<TypeTO> typeTOs;
-
+	private Collection<OwnerTO> owners;
 	public String getDraw() {
 		return draw;
 	}
@@ -33,11 +34,10 @@ public class TypeTOs {
 	public void setRecordsFiltered(String recordsFiltered) {
 		this.recordsFiltered = recordsFiltered;
 	}
-	public Collection<TypeTO> getTypeTOs() {
-		return typeTOs;
+	public Collection<OwnerTO> getOwners() {
+		return owners;
 	}
-	public void setTypeTOs(Collection<TypeTO> typeTOs) {
-		this.typeTOs = typeTOs;
+	public void setOwners(Collection<OwnerTO> owners) {
+		this.owners = owners;
 	}
-	
 }

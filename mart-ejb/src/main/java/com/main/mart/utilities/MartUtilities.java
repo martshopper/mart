@@ -14,6 +14,7 @@ import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.PBEParameterSpec;
 
 import org.apache.commons.codec.binary.Base64;
+import org.jboss.logging.Logger;
 
 import com.main.mart.entity.User;
 
@@ -27,6 +28,7 @@ public class MartUtilities {
             (byte) 0x10, (byte) 0x12, };
 	private static final String DATETIME_FORMAT_UI = "dd-MMM-yyyy HH:mm";
 	private static final String DATE_FORMAT_UI = "dd-MMM-yyyy";
+	private static final Logger logger = Logger.getLogger(MartUtilities.class);
 	public static String cnvtDBDateToUIDate(Date dbDate) {
 		try {
 			if(dbDate != null) {
@@ -34,7 +36,7 @@ public class MartUtilities {
 				return dateFormat.format(dbDate);
 			}
 		}catch (Exception e) {
-			e.printStackTrace();
+			showLog(e);
 		}return null;
 	}
 	public static String cnvtDBDateTimeToUIDateTime(Date dbDate) {
@@ -44,7 +46,7 @@ public class MartUtilities {
 				return dateFormat.format(dbDate);
 			}
 		}catch (Exception e) {
-			e.printStackTrace();
+			showLog(e);
 		}return null;
 	}
 	public static Date cnvtUIStringDateToDate(String uiDate) {
@@ -55,7 +57,7 @@ public class MartUtilities {
 			DateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT_UI);
 			return (Date)dateFormat.parse(uiDate);
 		}catch (Exception e) {
-			e.printStackTrace();
+			showLog(e);
 		} return null;
 	}
 	public static Date cnvtUIStringDateTimeToDate(String uiDate) {
@@ -66,7 +68,7 @@ public class MartUtilities {
 			DateFormat dateFormat = new SimpleDateFormat(DATETIME_FORMAT_UI);
 			return (Date)dateFormat.parse(uiDate);
 		}catch (Exception e) {
-			e.printStackTrace();
+			showLog(e);
 		} return null;
 	}
 	public static Date getCurrentDateTime() {
@@ -80,7 +82,7 @@ public class MartUtilities {
 	        pbeCipher.init(Cipher.ENCRYPT_MODE, key, new PBEParameterSpec(SALT, 20));
 	        return base64Encode(pbeCipher.doFinal(property.getBytes("UTF-8")));
 		}catch (Exception e) {
-			e.printStackTrace();
+			showLog(e);
 		}return property;
 	}
 	private static String base64Encode(byte[] bytes) {
@@ -94,14 +96,14 @@ public class MartUtilities {
 	        pbeCipher.init(Cipher.DECRYPT_MODE, key, new PBEParameterSpec(SALT, 20));
 	        return new String(pbeCipher.doFinal(base64Decode(property)), "UTF-8");
 		}catch (Exception e) {
-			e.printStackTrace();
+			showLog(e);
 		} return property;
 	}
 	private static byte[] base64Decode(String property) {
         try {
         	return Base64.decodeBase64(property);
         }catch (Exception e) {
-			e.printStackTrace();
+        	showLog(e);
 		}return null;	
     }
 	public static String getUserFullName(User user) {
@@ -118,7 +120,11 @@ public class MartUtilities {
 			}
 			return nameBuilder.toString();
 		}catch (Exception e) {
-			e.printStackTrace();
+			showLog(e);
 		}return null;
+	}
+	public static void showLog(Exception e) {
+		logger.error(e.getMessage());
+		logger.error(e);
 	}
 }

@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import com.main.mart.entity.TaxMaster;
+import com.main.mart.utilities.MartUtilities;
 import com.main.mart.utilities.ResponseStatus;
 
 /**
@@ -33,7 +34,7 @@ public class TaxMasterEJBImpl implements TaxMasterEJBIf {
 		}catch (Exception e) {
 			responseStatus.setStatus(false);
 			responseStatus.setErrorMessage(e.getMessage());
-			e.printStackTrace();
+			MartUtilities.showLog(e);
 		}
 		return responseStatus;
 	}

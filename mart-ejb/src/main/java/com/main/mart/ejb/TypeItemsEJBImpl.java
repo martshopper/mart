@@ -12,6 +12,7 @@ import javax.persistence.TypedQuery;
 
 import com.main.mart.common.dto.TypeItemsTO;
 import com.main.mart.entity.TypeItems;
+import com.main.mart.utilities.MartUtilities;
 import com.main.mart.utilities.ResponseStatus;
 import com.main.mart.utilities.StatusEnum;
 
@@ -43,7 +44,7 @@ public class TypeItemsEJBImpl implements TypeItemsEJBIf {
 		}catch (Exception e) {
 			responseStatus.setStatus(false);
 			responseStatus.setErrorMessage(e.getMessage());
-			e.printStackTrace();
+			MartUtilities.showLog(e);
 		}
 		return responseStatus;
 	}
@@ -61,7 +62,7 @@ public class TypeItemsEJBImpl implements TypeItemsEJBIf {
 		}catch (Exception e) {
 			responseStatus.setStatus(false);
 			responseStatus.setErrorMessage(e.getMessage());
-			e.printStackTrace();
+			MartUtilities.showLog(e);
 		}
 		return responseStatus;
 	}
@@ -71,7 +72,7 @@ public class TypeItemsEJBImpl implements TypeItemsEJBIf {
 		try {
 			return em.find(TypeItems.class, id);
 		}catch (Exception e) {
-			e.printStackTrace();
+			MartUtilities.showLog(e);
 		} return null;
 	}
 
@@ -103,7 +104,7 @@ public class TypeItemsEJBImpl implements TypeItemsEJBIf {
 			}
 			types = typedQuery.getResultList();
 		}catch (Exception e) {
-			e.printStackTrace();
+			MartUtilities.showLog(e);
 		}
 		return types;
 	}
@@ -117,7 +118,7 @@ public class TypeItemsEJBImpl implements TypeItemsEJBIf {
 			 em.flush();
 			 responseStatus.setStatus(true);
 		}catch (Exception e) {
-			e.printStackTrace();
+			MartUtilities.showLog(e);
 			responseStatus.setStatus(false);
 			responseStatus.setErrorMessage(e.getMessage());
 		}

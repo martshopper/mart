@@ -1,9 +1,11 @@
 /**
  * 
  */
-package com.main.mart.common.dto;
+package com.main.mart.dto;
 
 import java.util.Collection;
+
+import com.main.mart.common.dto.UserTO;
 
 /**
  * @author Hitesh

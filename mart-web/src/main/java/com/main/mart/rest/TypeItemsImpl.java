@@ -14,10 +14,11 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
 
 import com.main.mart.common.dto.TypeItemsTO;
-import com.main.mart.common.dto.TypeItemsTOs;
+import com.main.mart.dto.TypeItemsTOs;
 import com.main.mart.ejb.TypeItemsEJBIf;
 import com.main.mart.entity.Type;
 import com.main.mart.entity.TypeItems;
+import com.main.mart.utilities.MartUtilities;
 import com.main.mart.utilities.ResponseStatus;
 import com.main.mart.utilities.StatusEnum;
 import com.main.mart.utilities.StringUtils;
@@ -58,7 +59,7 @@ public class TypeItemsImpl implements TypeItemsIf {
 			typeItemsTOs.setRecordsTotal(colTypeItems.size()+"");
 			typeItemsTOs.setTypeItemsTOs(colTypeItems);
 		}catch (Exception e) {
-			e.printStackTrace();
+			MartUtilities.showLog(e);
 		}
 		return typeItemsTOs;
 	}
@@ -77,7 +78,7 @@ public class TypeItemsImpl implements TypeItemsIf {
 				itemsTO.setStatus(items.getStatusEnum().toString());
 			}
 		}catch (Exception e) {
-			e.printStackTrace();
+			MartUtilities.showLog(e);
 		}
 		return itemsTO;
 	}
@@ -119,7 +120,7 @@ public class TypeItemsImpl implements TypeItemsIf {
 				}
 			}
 		}catch (Exception e) {
-			e.printStackTrace();
+			MartUtilities.showLog(e);
 			response.put("exception", e.getMessage());
 			builder = Response.status(400).entity(response);
 		}
@@ -138,7 +139,7 @@ public class TypeItemsImpl implements TypeItemsIf {
 				builder = Response.status(400).entity(response);
 			}
 		}catch (Exception e) {
-			e.printStackTrace();
+			MartUtilities.showLog(e);
 			response.put("exception", e.getMessage());
 			builder = Response.status(400).entity(response);
 		}

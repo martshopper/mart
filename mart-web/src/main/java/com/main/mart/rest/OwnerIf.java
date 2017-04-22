@@ -13,33 +13,33 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import com.main.mart.common.dto.TypeItemsTO;
-import com.main.mart.dto.TypeItemsTOs;
+import com.main.mart.common.dto.OwnerTO;
+import com.main.mart.dto.OwnerTOs;
 
 /**
  * @author Hitesh
  *
  */
 @Path("/")
-public interface TypeItemsIf {
+public interface OwnerIf {
 	
 	@GET
-	@Path("/typeitems")
+	@Path("/owner")
 	@Produces(MediaType.APPLICATION_JSON)
-	public TypeItemsTOs getAllTypeItems(@QueryParam("itemCode") String itemCode, @QueryParam("description") String description, @QueryParam("typeId") String typeId);
+	public OwnerTOs getOwners(@QueryParam("shortName") String shortName, @QueryParam("fullName") String fullName, @QueryParam("phone") String phone);
 	
 	@GET
-	@Path("/typeitems/{id}")
+	@Path("/owner/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public TypeItemsTO getTypeItemsById(@PathParam("id") Integer id);
+	public OwnerTO getOwnerById(@PathParam("id") Integer id);
 	
 	@POST
-	@Path("/typeitems")
+	@Path("/owner")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response addTypeItems(TypeItemsTO typeItemsTO);
+	public Response addOwner(OwnerTO ownerTO);
 	
 	@DELETE
-	@Path("/typeitems/{id}")
+	@Path("/owner/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response deleteTypeItems(@PathParam("id") Integer id);
+	public Response deleteOwner(@PathParam("id") Integer id);
 }

@@ -14,7 +14,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
 
 import com.main.mart.common.dto.UserTO;
-import com.main.mart.common.dto.UserTOs;
+import com.main.mart.dto.UserTOs;
 import com.main.mart.ejb.UserEJBIf;
 import com.main.mart.entity.TypeItems;
 import com.main.mart.entity.User;
@@ -125,6 +125,7 @@ public class UserImpl implements UserIf {
 		}catch (Exception e) {
 			response.put("exception", e.getMessage());
 			builder = Response.status(400).entity(response);
+			MartUtilities.showLog(e);
 		}
 		return builder.build();
 	}
@@ -158,7 +159,7 @@ public class UserImpl implements UserIf {
 			userTOs.setRecordsTotal(colUsers.size()+"");
 			userTOs.setUserTOs(colUsers);
 		}catch (Exception e) {
-			e.printStackTrace();
+			MartUtilities.showLog(e);
 		}
 		return userTOs;
 	}
@@ -169,7 +170,7 @@ public class UserImpl implements UserIf {
 			User user = userEJBIf.getUserById(id);
 			return this.transformUserEntityToUserTO(user);
 		}catch (Exception e) {
-			e.printStackTrace();
+			MartUtilities.showLog(e);
 		}
 		return null;
 	}
@@ -186,7 +187,7 @@ public class UserImpl implements UserIf {
 				builder = Response.status(400).entity(response);
 			}
 		}catch (Exception e) {
-			e.printStackTrace();
+			MartUtilities.showLog(e);
 			response.put("exception", e.getMessage());
 			builder = Response.status(400).entity(response);
 		}
@@ -278,7 +279,7 @@ public class UserImpl implements UserIf {
 				return userTO;
 			}
 		}catch (Exception e) {
-			e.printStackTrace();
+			MartUtilities.showLog(e);
 		}return null;
 	}
 }

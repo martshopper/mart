@@ -50,7 +50,7 @@ public class UserEJBImpl implements UserEJBIf {
 		}catch (Exception e) {
 			responseStatus.setStatus(false);
 			responseStatus.setErrorMessage(e.getMessage());
-			e.printStackTrace();
+			MartUtilities.showLog(e);
 		}
 		return responseStatus;
 	}
@@ -60,7 +60,7 @@ public class UserEJBImpl implements UserEJBIf {
 		try {
 			return em.find(User.class, id);
 		}catch (Exception e) {
-			e.printStackTrace();
+			MartUtilities.showLog(e);
 		}
 		return null;
 	}
@@ -122,7 +122,7 @@ public class UserEJBImpl implements UserEJBIf {
 			}
 			return typedQuery.getResultList();
 		}catch (Exception e) {
-			e.printStackTrace();
+			MartUtilities.showLog(e);
 		}
 		return null;
 	}
@@ -136,7 +136,7 @@ public class UserEJBImpl implements UserEJBIf {
 			 em.flush();
 			 responseStatus.setStatus(true);
 		}catch (Exception e) {
-			e.printStackTrace();
+			MartUtilities.showLog(e);
 			responseStatus.setStatus(false);
 			responseStatus.setErrorMessage(e.getMessage());
 		}

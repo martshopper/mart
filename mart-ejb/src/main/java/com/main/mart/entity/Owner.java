@@ -110,9 +110,9 @@ public class Owner implements Serializable{
 	@Column(name = "TUESDAY", columnDefinition = "enum ('Y', 'N') default 'N'",nullable = false)
 	private CommonEnum tuesday;
 	
-	@JoinColumn(name = "TYPE", referencedColumnName = "ID", nullable = false)
+	@JoinColumn(name = "TYPE_ID", referencedColumnName = "ID", nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
-	private TypeItems type;
+	private TypeItems typeId;
 	
 	@Enumerated(EnumType.STRING)
 	@Column(name = "WEDNESDAY", columnDefinition = "enum ('Y', 'N') default 'N'",nullable = false)
@@ -292,12 +292,12 @@ public class Owner implements Serializable{
 		this.tuesday = tuesday;
 	}
 
-	public TypeItems getType() {
-		return type;
+	public TypeItems getTypeId() {
+		return typeId;
 	}
 
-	public void setType(TypeItems type) {
-		this.type = type;
+	public void setTypeId(TypeItems typeId) {
+		this.typeId = typeId;
 	}
 
 	public CommonEnum getWednesday() {

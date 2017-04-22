@@ -12,6 +12,7 @@ import javax.persistence.TypedQuery;
 
 import com.main.mart.common.dto.TypeTO;
 import com.main.mart.entity.Type;
+import com.main.mart.utilities.MartUtilities;
 import com.main.mart.utilities.ResponseStatus;
 import com.main.mart.utilities.StatusEnum;
 
@@ -43,7 +44,7 @@ public class TypeEJBImpl implements TypeEJBIf {
 		}catch (Exception e) {
 			responseStatus.setStatus(false);
 			responseStatus.setErrorMessage(e.getMessage());
-			e.printStackTrace();
+			MartUtilities.showLog(e);
 		}
 		return responseStatus;
 	}
@@ -61,7 +62,7 @@ public class TypeEJBImpl implements TypeEJBIf {
 		}catch (Exception e) {
 			responseStatus.setStatus(false);
 			responseStatus.setErrorMessage(e.getMessage());
-			e.printStackTrace();
+			MartUtilities.showLog(e);
 		}
 		return responseStatus;
 	}
@@ -71,7 +72,7 @@ public class TypeEJBImpl implements TypeEJBIf {
 		try {
 			return em.find(Type.class, id);
 		}catch (Exception e) {
-			e.printStackTrace();
+			MartUtilities.showLog(e);
 		} return null;
 	}
 
@@ -97,7 +98,7 @@ public class TypeEJBImpl implements TypeEJBIf {
 			}
 			types = typedQuery.getResultList();
 		}catch (Exception e) {
-			e.printStackTrace();
+			MartUtilities.showLog(e);
 		}
 		return types;
 	}
@@ -111,7 +112,7 @@ public class TypeEJBImpl implements TypeEJBIf {
 			 em.flush();
 			 responseStatus.setStatus(true);
 		}catch (Exception e) {
-			e.printStackTrace();
+			MartUtilities.showLog(e);
 			responseStatus.setStatus(false);
 			responseStatus.setErrorMessage(e.getMessage());
 		}

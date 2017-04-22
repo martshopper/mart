@@ -14,9 +14,10 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
 
 import com.main.mart.common.dto.TypeTO;
-import com.main.mart.common.dto.TypeTOs;
+import com.main.mart.dto.TypeTOs;
 import com.main.mart.ejb.TypeEJBIf;
 import com.main.mart.entity.Type;
+import com.main.mart.utilities.MartUtilities;
 import com.main.mart.utilities.ResponseStatus;
 import com.main.mart.utilities.StatusEnum;
 import com.main.mart.utilities.StringUtils;
@@ -58,7 +59,7 @@ public class TypeImpl implements TypeIf {
 			typeTOs.setRecordsFiltered(colTypes.size()+"");
 			typeTOs.setRecordsTotal(colTypes.size()+"");
 		}catch (Exception e) {
-			e.printStackTrace();
+			MartUtilities.showLog(e);
 		}
 		return typeTOs;
 	}
@@ -85,7 +86,7 @@ public class TypeImpl implements TypeIf {
 				}
 			}
 		}catch (Exception e) {
-			e.printStackTrace();
+			MartUtilities.showLog(e);
 			response.put("exception", e.getMessage());
 			builder = Response.status(400).entity(response);
 		}
@@ -102,7 +103,7 @@ public class TypeImpl implements TypeIf {
 			typeTO.setTypeDescription(type.getTypeDescription());
 			typeTO.setStatus(type.getStatus().toString());
 		}catch (Exception e) {
-			e.printStackTrace();
+			MartUtilities.showLog(e);
 		}
 		return typeTO;
 	}
@@ -119,7 +120,7 @@ public class TypeImpl implements TypeIf {
 				builder = Response.status(400).entity(response);
 			}
 		}catch (Exception e) {
-			e.printStackTrace();
+			MartUtilities.showLog(e);
 			response.put("exception", e.getMessage());
 			builder = Response.status(400).entity(response);
 		}
