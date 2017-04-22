@@ -1,11 +1,13 @@
 <script>
 $(document).ready(function() {
-    $('#datePicker')
-        .datepicker({
-            format: 'mm/dd/yyyy'
-        })
-        .on('changeDate', function(e) {
-        });
+
+     $('#datePicker').datepicker({
+        orientation: "left",
+        autoclose: true,
+        format: 'mm/dd/yyyy'
+    });
+
+
 });
 </script>
 <div class="portlet box green">
@@ -95,9 +97,13 @@ $(document).ready(function() {
                                 <span class="required" aria-required="true"> * </span>
                             </label>
                             <div class="col-sm-8 date">
-								<div class="input-group input-append date" id="datePicker">
-									<input type="text" class="form-control" placeholder="" name="date">
-									<span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+								<div class="input-group input-append date" >
+                                    <input type="text" class="form-control" id="datePicker">
+									<span class="input-group-btn">
+                                        <button class="btn default" type="button">
+                                            <i class="fa fa-calendar"></i>
+                                        </button>
+                                    </span>
 									
 								</div>
                             </div>
