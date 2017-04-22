@@ -71,6 +71,36 @@ function globalWarningAlert(message) {
     toastr.warning(message, "Warning");
 }
 
+function logout(){
+  
+    $.ajax({
+        type: "GET",
+        url: 'rest/logout',
+        success: function()
+        { 
+          reloadScreen();
+        } 
+        ,
+        error: function(error)
+        {
+          reloadScreen();
+        }
+    });
+  } 
+    
+  function reloadScreen(){
+    var loc = window.location.href.split("?");
+      if(loc.length>1){
+        window.location.replace(loc[0]);
+      }else{
+        loc = window.location.href.split("#");
+        if(loc.length>1){
+          window.location.replace(loc[0]);
+        }else{
+          window.location.replace(window.location.href);
+        }
+      } 
+  }
 
 </script>
 </head>
@@ -109,7 +139,7 @@ function globalWarningAlert(message) {
 
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+        <li><a href="#" onclick="logout()"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
       </ul>
     </div>
   </div>

@@ -9,6 +9,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import javax.security.auth.login.LoginException;
 
 import com.main.mart.common.dto.UserTO;
 import com.main.mart.entity.User;
@@ -141,6 +142,32 @@ public class UserEJBImpl implements UserEJBIf {
 			responseStatus.setErrorMessage(e.getMessage());
 		}
 		return responseStatus;
+	}
+	
+	@Override
+	public User checkUserAndPassword(String username, String password) throws LoginException {
+		try {
+			StringBuilder hqlBuilder = new StringBuilder();
+			hqlBuilder.append("SELECT u FROM User u WHERE u.status=:status");
+			if(!StringUtils.isNullOrEmpty(username)){
+				hqlBuilder.append(" AND u.userName = :username");
+			}
+			if(!StringUtils.isNullOrEmpty(password)){
+				hqlBuilder.append(" AND u.password = :password");
+			}
+			TypedQuery<User> typedQuery = em.createQuery(hqlBuilder.toString(), User.class);
+			typedQuery.setParameter("status", StatusEnum.A);
+			if(!StringUtils.isNullOrEmpty(username)){
+				typedQuery.setParameter("username", username);
+			}
+			if(!StringUtils.isNullOrEmpty(password)){
+				typedQuery.setParameter("password", password);
+			}
+			typedQuery.setParameter("status", StatusEnum.A);
+			return typedQuery.getSingleResult();
+		}catch (Exception e) {
+			throw new LoginException(e.getMessage()); 
+		}
 	}
 
 }
