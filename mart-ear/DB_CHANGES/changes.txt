@@ -1,0 +1,4 @@
+Meronic Theme:
+
+Added logo in assets/layouts/layout/img/
+Changed App.js and App.min.js to set Base path for Theme 

@@ -1,20 +1,11 @@
 
-table.dataTable thead .sorting_asc{
-    background-image:none;
-}
-table.dataTable thead .sorting_desc{
-    background-image:none;
-}
-table.dataTable thead .sorting{
-    background-image:none;
+/* Logo Width  */
+.page-header.navbar .page-logo .logo-default {
+	margin:	 6px 8px 0;
+    width: 20%;
 }
 
-.master_container{
-    padding-top: 5%;
-}
-.navbar-brand {
-	background: url("brand-logo.jpg");
-	background-size: 50px 40px;
-    background-repeat: no-repeat;
-	background-position: center; 
+/* theme setting */
+.page-container-bg-solid .theme-panel, .page-content-white .theme-panel{
+    margin-top: -4px;
 }
