@@ -1,10 +1,10 @@
 <script type="text/javascript">
 var typeDatatable;
 $(document).ready(function() {	
-   function loadTypeGrid() {
+   function loadTypeGrid(params) {
 		typeDatatable = $('#tblTypes').DataTable({
 			"processing": false,
-			"searching": false,
+			"searching": true,
 			"serverSide": true,
 			"processing": true,
 			"serverSide": false,
@@ -31,15 +31,12 @@ $(document).ready(function() {
 				{ "data": "typeDescription", "orderable": "true" }				
 			],
 			"ajax": {
-			"url": "rest/type",
+			"url": "rest/type?"+params,
 			"dataSrc": "typeTOs",
 			"type": "GET"
 			}
 		});
 	}
-
-
-   
     $('#tblTypes').on( 'click', 'tr', function () {
         if ( !$(this).hasClass('selected') ) {
             typeDatatable.$('tr.selected').removeClass('selected');
@@ -48,11 +45,7 @@ $(document).ready(function() {
             }
         }
     });
-
-
-   
-
-  
+	
 	$('#type_form').bootstrapValidator({
         feedbackIcons: {
             valid: 'glyphicon glyphicon-ok',
@@ -105,7 +98,7 @@ $(document).ready(function() {
 				success: function (data) {
 					globalSuccessAlert(message);
 					$("#btnResetType").click();
-					loadTypeGrid();
+					loadTypeGrid("");
 				},
 				error: function (error) {
 					globalErrorAlert(error);
@@ -113,18 +106,16 @@ $(document).ready(function() {
 			});
         });
 
-
-
 		$("#btnResetType").click(function() {
 			$('#type_form').data('bootstrapValidator').resetForm();
 			$("#typeId").val("");
 			$("#typeCode").val("");
 			$("#typeDescription").val("");
 			$("#btnAddUpdateType").text("Save");
+			loadTypeGrid("");
 		});
 
-
-		loadTypeGrid();
+		loadTypeGrid("");
 		$("#btnDeleteType").click(function() {
 			if($("#typeId").val() != "") {
 				$.ajax({
@@ -133,7 +124,7 @@ $(document).ready(function() {
 					success: function (data) {
 						globalSuccessAlert("Type Deleted Successfully");
 						$("#btnResetType").click();
-						loadTypeGrid();
+						loadTypeGrid("");
 					},
 					error: function (error) {
 						globalErrorAlert(error);
@@ -142,6 +133,9 @@ $(document).ready(function() {
 			}else {
 				globalWarningAlert("Please select record to Delete");
 			}
+		});
+		$("#btnSearchType").click(function() {
+			loadTypeGrid('typeCode='+$("#typeCode").val()+'&typeDescription='+$("#typeDescription").val());
 		});
 });
 function showType(id) {

@@ -12,4 +12,9 @@ table.dataTable thead .sorting{
 .master_container{
     padding-top: 5%;
 }
-
+.navbar-brand {
+	background: url("brand-logo.jpg");
+	background-size: 50px 40px;
+    background-repeat: no-repeat;
+	background-position: center; 
+}

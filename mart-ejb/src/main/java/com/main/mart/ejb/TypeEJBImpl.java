@@ -15,6 +15,7 @@ import com.main.mart.entity.Type;
 import com.main.mart.utilities.MartUtilities;
 import com.main.mart.utilities.ResponseStatus;
 import com.main.mart.utilities.StatusEnum;
+import com.main.mart.utilities.StringUtils;
 
 /**
  * @author Hitesh
@@ -82,18 +83,18 @@ public class TypeEJBImpl implements TypeEJBIf {
 		try {
 			StringBuilder hqlBuilder = new StringBuilder();
 			hqlBuilder.append("SELECT t FROM Type t WHERE t.status=:status");
-			if(typeTO.getTypeCode() != null) {
+			if(!StringUtils.isNullOrEmpty(typeTO.getTypeCode())) {
 				hqlBuilder.append(" AND t.typeCode LIKE :code");
 			}
-			if(typeTO.getTypeDescription() != null) {
+			if(!StringUtils.isNullOrEmpty(typeTO.getTypeDescription())) {
 				hqlBuilder.append(" AND t.typeDescription LIKE :desc");
 			}
 			TypedQuery<Type> typedQuery = em.createQuery(hqlBuilder.toString(), Type.class);
 			typedQuery.setParameter("status", StatusEnum.A);
-			if(typeTO.getTypeCode() != null) {
+			if(!StringUtils.isNullOrEmpty(typeTO.getTypeCode())) {
 				typedQuery.setParameter("code", typeTO.getTypeCode().concat("%"));
 			}
-			if(typeTO.getTypeDescription() != null) {
+			if(!StringUtils.isNullOrEmpty(typeTO.getTypeDescription())) {
 				typedQuery.setParameter("desc", typeTO.getTypeDescription().concat("%"));
 			}
 			types = typedQuery.getResultList();
