@@ -12900,9 +12900,12 @@ Light Table
   .table.table-light.table-hover > tbody > tr:hover > td {
     background: #f9fafb !important; }
 
+/*
 .table-hover > tbody > tr:hover,
 .table-hover > tbody > tr:hover > td {
   background: #f3f4f6 !important; }
+
+*/
 
 /***
 Customized Bootstrap Tabs 
