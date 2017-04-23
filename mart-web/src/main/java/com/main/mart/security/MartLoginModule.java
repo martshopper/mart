@@ -20,6 +20,7 @@ import org.jboss.security.auth.spi.UsernamePasswordLoginModule;
 
 import com.main.mart.ejb.UserEJBIf;
 import com.main.mart.entity.User;
+import com.main.mart.utilities.MartUtilities;
 
 @Stateless
 public class MartLoginModule extends UsernamePasswordLoginModule{
@@ -29,38 +30,36 @@ public class MartLoginModule extends UsernamePasswordLoginModule{
 
 
 	@Override
-	protected boolean validatePassword(String username, String password)
-	{	Principal p = this.getIdentity();
-
-	try{		
-System.out.println("Trying to login");
-		sub = new Subject();
-		if(password==null){
-			password = username;
-			username = p.getName();
-		}
-
-		if(p instanceof SecurityPrincipal) {					  
-
-			try {
-				sp = (SecurityPrincipal)p;
-				sp.setSubj(sub);	
-				sp.setColRole(null);
-
-				sp.setUsername(username);
-				sp.setPassword(password);
-				return isValidUser(username, password);
-			}catch(Exception e) {
-				e.printStackTrace();
-				return false;					  		  
+	protected boolean validatePassword(String username, String password) {	
+		Principal p = this.getIdentity();
+		try{
+			MartUtilities.showLog("Trying to login");
+			sub = new Subject();
+			if(password==null){
+				password = username;
+				username = p.getName();
 			}
+	
+			if(p instanceof SecurityPrincipal) {					  
+	
+				try {
+					sp = (SecurityPrincipal)p;
+					sp.setSubj(sub);	
+					sp.setColRole(null);	
+					sp.setUsername(username);
+					sp.setPassword(password);
+					return isValidUser(username, password);
+				}catch(Exception e) {
+					MartUtilities.showErrorLog(e);
+					return false;					  		  
+				}
+			}
+		}catch(Exception e){
+			MartUtilities.showErrorLog(e);
+			return false;
+			
 		}
-	}catch(Exception e){
-		e.printStackTrace();
 		return false;
-		
-	}
-	return false;
 	}
 
 	@Override
@@ -83,8 +82,6 @@ System.out.println("Trying to login");
 		}
 
 	}
-
-
 	public Boolean isValidUser(String username, String password) throws LoginException  {
 		Boolean status = false;		
 		try{
@@ -98,6 +95,7 @@ System.out.println("Trying to login");
 				status = true;
 			}
 		}catch(Exception e){
+			MartUtilities.showErrorLog(e);
 			return status;
 		}
 		return status;

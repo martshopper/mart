@@ -15,6 +15,7 @@ import com.main.mart.entity.ItemMaster;
 import com.main.mart.utilities.MartUtilities;
 import com.main.mart.utilities.ResponseStatus;
 import com.main.mart.utilities.StatusEnum;
+import com.main.mart.utilities.StringUtils;
 
 /**
  * @author Hitesh
@@ -46,7 +47,7 @@ public class ItemMasterEJBImpl implements ItemMasterEJBIf {
 		}catch (Exception e) {
 			responseStatus.setStatus(false);
 			responseStatus.setErrorMessage(e.getMessage());
-			MartUtilities.showLog(e);
+			MartUtilities.showErrorLog(e);
 		}
 		return responseStatus;
 	}
@@ -56,11 +57,29 @@ public class ItemMasterEJBImpl implements ItemMasterEJBIf {
 		try {
 			StringBuilder hqlBuilder = new StringBuilder();
 			hqlBuilder.append("SELECT im FROM ItemMaster im WHERE im.status=:status");
+			if(!StringUtils.isNullOrEmpty(itemMaster.getItemCode())) {
+				hqlBuilder.append(" AND im.itemCode LIKE :itemCode");
+			}
+			if(!StringUtils.isNullOrEmpty(itemMaster.getItemName())) {
+				hqlBuilder.append(" AND im.itemName LIKE :itemName");
+			}
+			if(!StringUtils.isNullOrEmpty(itemMaster.getShortName())) {
+				hqlBuilder.append(" AND im.shortName LIKE :shortName");
+			}
 			TypedQuery<ItemMaster> typedQuery = em.createQuery(hqlBuilder.toString(), ItemMaster.class);
 			typedQuery.setParameter("status", StatusEnum.A);
+			if(!StringUtils.isNullOrEmpty(itemMaster.getItemCode())) {
+				typedQuery.setParameter("itemCode", itemMaster.getItemCode().concat("%"));
+			}
+			if(!StringUtils.isNullOrEmpty(itemMaster.getItemName())) {
+				typedQuery.setParameter("itemName", itemMaster.getItemName().concat("%"));
+			}
+			if(!StringUtils.isNullOrEmpty(itemMaster.getShortName())) {
+				typedQuery.setParameter("shortName", itemMaster.getShortName().concat("%"));
+			}
 			return typedQuery.getResultList();
 		}catch (Exception e) {
-			MartUtilities.showLog(e);
+			MartUtilities.showErrorLog(e);
 		}
 		return null;
 	}
@@ -70,7 +89,7 @@ public class ItemMasterEJBImpl implements ItemMasterEJBIf {
 		try {
 			return em.find(ItemMaster.class, id);
 		}catch (Exception e) {
-			MartUtilities.showLog(e);
+			MartUtilities.showErrorLog(e);
 		}
 		return null;
 	}
@@ -84,7 +103,7 @@ public class ItemMasterEJBImpl implements ItemMasterEJBIf {
 			em.flush();
 			responseStatus.setStatus(true);
 		}catch (Exception e) {
-			MartUtilities.showLog(e);
+			MartUtilities.showErrorLog(e);
 			responseStatus.setStatus(false);
 			responseStatus.setErrorMessage(e.getMessage());
 		}

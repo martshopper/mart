@@ -8,6 +8,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
@@ -31,6 +32,7 @@ import com.main.mart.utilities.StringUtils;
 @Stateless
 public class OwnerImpl implements OwnerIf{
 	ResponseBuilder builder;
+	@EJB
 	private OwnerEJBIf ownerEJBIf;
 	
 	@Override
@@ -56,7 +58,7 @@ public class OwnerImpl implements OwnerIf{
 			ownerTOs.setRecordsFiltered(owners.size()+"");
 			ownerTOs.setRecordsTotal(owners.size()+"");
 		}catch (Exception e) {
-			MartUtilities.showLog(e);
+			MartUtilities.showErrorLog(e);
 		}
 		return ownerTOs;
 	}
@@ -67,7 +69,7 @@ public class OwnerImpl implements OwnerIf{
 			Owner owner = ownerEJBIf.getOwnerById(id);
 			return this.transformOwnerTOfromEntity(owner);
 		}catch (Exception e) {
-			MartUtilities.showLog(e);
+			MartUtilities.showErrorLog(e);
 		}return null;
 	}
 
@@ -197,7 +199,7 @@ public class OwnerImpl implements OwnerIf{
 				}
 			}
 		}catch (Exception e) {
-			MartUtilities.showLog(e);
+			MartUtilities.showErrorLog(e);
 			response.put("exception", e.getMessage());
 			builder = Response.status(400).entity(response);
 		}
@@ -216,7 +218,7 @@ public class OwnerImpl implements OwnerIf{
 				builder = Response.status(400).entity(response);
 			}
 		}catch (Exception e) {
-			MartUtilities.showLog(e);
+			MartUtilities.showErrorLog(e);
 			response.put("exception", e.getMessage());
 			builder = Response.status(400).entity(response);
 		}
@@ -262,7 +264,7 @@ public class OwnerImpl implements OwnerIf{
 				return ownerTO;
 			}
 		}catch (Exception e) {
-			MartUtilities.showLog(e);
+			MartUtilities.showErrorLog(e);
 		}return null;
 	}
 }

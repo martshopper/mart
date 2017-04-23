@@ -59,7 +59,7 @@ public class TypeImpl implements TypeIf {
 			typeTOs.setRecordsFiltered(colTypes.size()+"");
 			typeTOs.setRecordsTotal(colTypes.size()+"");
 		}catch (Exception e) {
-			MartUtilities.showLog(e);
+			MartUtilities.showErrorLog(e);
 		}
 		return typeTOs;
 	}
@@ -86,7 +86,7 @@ public class TypeImpl implements TypeIf {
 				}
 			}
 		}catch (Exception e) {
-			MartUtilities.showLog(e);
+			MartUtilities.showErrorLog(e);
 			response.put("exception", e.getMessage());
 			builder = Response.status(400).entity(response);
 		}
@@ -103,7 +103,7 @@ public class TypeImpl implements TypeIf {
 			typeTO.setTypeDescription(type.getTypeDescription());
 			typeTO.setStatus(type.getStatus().toString());
 		}catch (Exception e) {
-			MartUtilities.showLog(e);
+			MartUtilities.showErrorLog(e);
 		}
 		return typeTO;
 	}
@@ -120,7 +120,7 @@ public class TypeImpl implements TypeIf {
 				builder = Response.status(400).entity(response);
 			}
 		}catch (Exception e) {
-			MartUtilities.showLog(e);
+			MartUtilities.showErrorLog(e);
 			response.put("exception", e.getMessage());
 			builder = Response.status(400).entity(response);
 		}
