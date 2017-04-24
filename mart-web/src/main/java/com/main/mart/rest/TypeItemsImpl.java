@@ -59,7 +59,7 @@ public class TypeItemsImpl implements TypeItemsIf {
 			typeItemsTOs.setRecordsTotal(colTypeItems.size()+"");
 			typeItemsTOs.setTypeItemsTOs(colTypeItems);
 		}catch (Exception e) {
-			MartUtilities.showLog(e);
+			MartUtilities.showErrorLog(e);
 		}
 		return typeItemsTOs;
 	}
@@ -78,7 +78,7 @@ public class TypeItemsImpl implements TypeItemsIf {
 				itemsTO.setStatus(items.getStatusEnum().toString());
 			}
 		}catch (Exception e) {
-			MartUtilities.showLog(e);
+			MartUtilities.showErrorLog(e);
 		}
 		return itemsTO;
 	}
@@ -120,7 +120,7 @@ public class TypeItemsImpl implements TypeItemsIf {
 				}
 			}
 		}catch (Exception e) {
-			MartUtilities.showLog(e);
+			MartUtilities.showErrorLog(e);
 			response.put("exception", e.getMessage());
 			builder = Response.status(400).entity(response);
 		}
@@ -139,7 +139,7 @@ public class TypeItemsImpl implements TypeItemsIf {
 				builder = Response.status(400).entity(response);
 			}
 		}catch (Exception e) {
-			MartUtilities.showLog(e);
+			MartUtilities.showErrorLog(e);
 			response.put("exception", e.getMessage());
 			builder = Response.status(400).entity(response);
 		}

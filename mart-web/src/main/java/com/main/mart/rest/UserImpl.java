@@ -125,7 +125,7 @@ public class UserImpl implements UserIf {
 		}catch (Exception e) {
 			response.put("exception", e.getMessage());
 			builder = Response.status(400).entity(response);
-			MartUtilities.showLog(e);
+			MartUtilities.showErrorLog(e);
 		}
 		return builder.build();
 	}
@@ -159,7 +159,7 @@ public class UserImpl implements UserIf {
 			userTOs.setRecordsTotal(colUsers.size()+"");
 			userTOs.setUserTOs(colUsers);
 		}catch (Exception e) {
-			MartUtilities.showLog(e);
+			MartUtilities.showErrorLog(e);
 		}
 		return userTOs;
 	}
@@ -170,7 +170,7 @@ public class UserImpl implements UserIf {
 			User user = userEJBIf.getUserById(id);
 			return this.transformUserEntityToUserTO(user);
 		}catch (Exception e) {
-			MartUtilities.showLog(e);
+			MartUtilities.showErrorLog(e);
 		}
 		return null;
 	}
@@ -187,7 +187,7 @@ public class UserImpl implements UserIf {
 				builder = Response.status(400).entity(response);
 			}
 		}catch (Exception e) {
-			MartUtilities.showLog(e);
+			MartUtilities.showErrorLog(e);
 			response.put("exception", e.getMessage());
 			builder = Response.status(400).entity(response);
 		}
@@ -279,7 +279,7 @@ public class UserImpl implements UserIf {
 				return userTO;
 			}
 		}catch (Exception e) {
-			MartUtilities.showLog(e);
+			MartUtilities.showErrorLog(e);
 		}return null;
 	}
 }

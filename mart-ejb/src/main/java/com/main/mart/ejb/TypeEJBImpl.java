@@ -45,7 +45,7 @@ public class TypeEJBImpl implements TypeEJBIf {
 		}catch (Exception e) {
 			responseStatus.setStatus(false);
 			responseStatus.setErrorMessage(e.getMessage());
-			MartUtilities.showLog(e);
+			MartUtilities.showErrorLog(e);
 		}
 		return responseStatus;
 	}
@@ -63,7 +63,7 @@ public class TypeEJBImpl implements TypeEJBIf {
 		}catch (Exception e) {
 			responseStatus.setStatus(false);
 			responseStatus.setErrorMessage(e.getMessage());
-			MartUtilities.showLog(e);
+			MartUtilities.showErrorLog(e);
 		}
 		return responseStatus;
 	}
@@ -73,7 +73,7 @@ public class TypeEJBImpl implements TypeEJBIf {
 		try {
 			return em.find(Type.class, id);
 		}catch (Exception e) {
-			MartUtilities.showLog(e);
+			MartUtilities.showErrorLog(e);
 		} return null;
 	}
 
@@ -99,7 +99,7 @@ public class TypeEJBImpl implements TypeEJBIf {
 			}
 			types = typedQuery.getResultList();
 		}catch (Exception e) {
-			MartUtilities.showLog(e);
+			MartUtilities.showErrorLog(e);
 		}
 		return types;
 	}
@@ -113,7 +113,7 @@ public class TypeEJBImpl implements TypeEJBIf {
 			 em.flush();
 			 responseStatus.setStatus(true);
 		}catch (Exception e) {
-			MartUtilities.showLog(e);
+			MartUtilities.showErrorLog(e);
 			responseStatus.setStatus(false);
 			responseStatus.setErrorMessage(e.getMessage());
 		}

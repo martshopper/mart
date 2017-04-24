@@ -101,7 +101,7 @@ $(document).ready(function() {
 					loadTypeGrid("");
 				},
 				error: function (error) {
-					globalErrorAlert(error);
+					globalErrorAlert($.parseJSON(error.responseText).exception);
 				},            
 			});
         });
@@ -127,7 +127,7 @@ $(document).ready(function() {
 						loadTypeGrid("");
 					},
 					error: function (error) {
-						globalErrorAlert(error);
+						globalErrorAlert($.parseJSON(error.responseText).exception);
 					},            
 				});
 			}else {
@@ -150,6 +150,7 @@ function showType(id) {
 				$("#btnAddUpdateType").text("Update");
 			},
 			error: function (error) {
+				globalErrorAlert($.parseJSON(error.responseText).exception);
 			},            
 	});
 }

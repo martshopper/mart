@@ -34,7 +34,7 @@ public class GrnEJBImpl implements GrnEJBIf {
 		}catch (Exception e) {
 			responseStatus.setStatus(false);
 			responseStatus.setErrorMessage(e.getMessage());
-			MartUtilities.showLog(e);
+			MartUtilities.showErrorLog(e);
 		}
 		return responseStatus;
 	}

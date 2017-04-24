@@ -34,7 +34,7 @@ public class TaxMasterEJBImpl implements TaxMasterEJBIf {
 		}catch (Exception e) {
 			responseStatus.setStatus(false);
 			responseStatus.setErrorMessage(e.getMessage());
-			MartUtilities.showLog(e);
+			MartUtilities.showErrorLog(e);
 		}
 		return responseStatus;
 	}

@@ -44,7 +44,7 @@ public class TypeItemsEJBImpl implements TypeItemsEJBIf {
 		}catch (Exception e) {
 			responseStatus.setStatus(false);
 			responseStatus.setErrorMessage(e.getMessage());
-			MartUtilities.showLog(e);
+			MartUtilities.showErrorLog(e);
 		}
 		return responseStatus;
 	}
@@ -62,7 +62,7 @@ public class TypeItemsEJBImpl implements TypeItemsEJBIf {
 		}catch (Exception e) {
 			responseStatus.setStatus(false);
 			responseStatus.setErrorMessage(e.getMessage());
-			MartUtilities.showLog(e);
+			MartUtilities.showErrorLog(e);
 		}
 		return responseStatus;
 	}
@@ -72,7 +72,7 @@ public class TypeItemsEJBImpl implements TypeItemsEJBIf {
 		try {
 			return em.find(TypeItems.class, id);
 		}catch (Exception e) {
-			MartUtilities.showLog(e);
+			MartUtilities.showErrorLog(e);
 		} return null;
 	}
 
@@ -104,7 +104,7 @@ public class TypeItemsEJBImpl implements TypeItemsEJBIf {
 			}
 			types = typedQuery.getResultList();
 		}catch (Exception e) {
-			MartUtilities.showLog(e);
+			MartUtilities.showErrorLog(e);
 		}
 		return types;
 	}
@@ -118,7 +118,7 @@ public class TypeItemsEJBImpl implements TypeItemsEJBIf {
 			 em.flush();
 			 responseStatus.setStatus(true);
 		}catch (Exception e) {
-			MartUtilities.showLog(e);
+			MartUtilities.showErrorLog(e);
 			responseStatus.setStatus(false);
 			responseStatus.setErrorMessage(e.getMessage());
 		}

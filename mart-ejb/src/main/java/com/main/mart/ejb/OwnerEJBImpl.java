@@ -35,7 +35,7 @@ public class OwnerEJBImpl implements OwnerEJBIf {
 			typedQuery.setParameter("status", StatusEnum.A);
 			return typedQuery.getResultList();
 		}catch (Exception e) {
-			MartUtilities.showLog(e);
+			MartUtilities.showErrorLog(e);
 		}
 		return null;
 	}
@@ -60,7 +60,7 @@ public class OwnerEJBImpl implements OwnerEJBIf {
 		}catch (Exception e) {
 			responseStatus.setStatus(false);
 			responseStatus.setErrorMessage(e.getMessage());
-			MartUtilities.showLog(e);
+			MartUtilities.showErrorLog(e);
 		}
 		return responseStatus;
 	}
@@ -70,7 +70,7 @@ public class OwnerEJBImpl implements OwnerEJBIf {
 		try {
 			return em.find(Owner.class, id);
 		}catch (Exception e) {
-			MartUtilities.showLog(e);
+			MartUtilities.showErrorLog(e);
 		} return null;
 	}
 
@@ -83,7 +83,7 @@ public class OwnerEJBImpl implements OwnerEJBIf {
 			em.flush();
 			responseStatus.setStatus(true);
 		}catch (Exception e) {
-			MartUtilities.showLog(e);
+			MartUtilities.showErrorLog(e);
 			responseStatus.setStatus(false);
 			responseStatus.setErrorMessage(e.getMessage());
 		}
