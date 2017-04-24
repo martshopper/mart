@@ -142,8 +142,7 @@ function showType(id) {
 	$.ajax({
 			url: 'rest/type/'+id,
 			type: 'GET',
-			success: function (data) {
-				$("#btnResetType").click();				
+			success: function (data) {			
 				$("#typeId").val(data.id);
 				$("#typeCode").val(data.typeCode);
 				$("#typeDescription").val(data.typeDescription);
