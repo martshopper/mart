@@ -84,7 +84,9 @@ $(document).ready(function(){
   $("#linkDashboard").click(function () {
       openScreen('Dashboard');
   });
-
+  $("#linkSrchGrn").click(function () {
+      openScreen('Dashboard');
+  });
   $("#linkSrchChrgSlip").click(function () {
       openScreen('Dashboard');
   });
@@ -100,12 +102,28 @@ $(document).ready(function(){
   $("#linkOwner").click(function () {
       openScreen('Owner');
   });
+   $("#linkVendor").click(function () {
+      openScreen('Owner');
+  });
 
   $("#linkType").click(function () {
       openScreen('Type');
   });
 
   $("#linkTypeItems").click(function () {
+      openScreen('TypeItems');
+  });
+  
+  $("#linkItemType").click(function () {
+      openScreen('TypeItems');
+  });
+  $("#linkItemMaster").click(function () {
+      openScreen('TypeItems');
+  });
+   $("#linkTaxMaster").click(function () {
+      openScreen('TypeItems');
+  });
+   $("#linkCredentials").click(function () {
       openScreen('TypeItems');
   });
 
