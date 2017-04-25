@@ -3,6 +3,7 @@
 	<name>mart-ear</name>
 	<comment></comment>
 	<projects>
+		<project>mart</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
