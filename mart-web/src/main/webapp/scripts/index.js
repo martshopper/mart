@@ -105,6 +105,9 @@ $(document).ready(function(){
    $("#linkVendor").click(function () {
       openScreen('Owner');
   });
+   $("#linkStore").click(function () {
+	      openScreen('Owner');
+	 });
 
   $("#linkType").click(function () {
       openScreen('Type');

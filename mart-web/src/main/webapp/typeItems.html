@@ -1,3 +1,10 @@
+<script>
+	mart.loadCombo({
+		elementId : "cmbTypes",
+		url : "rest/type",
+		root : "typeTOs",
+	});
+</script>
 <div class="portlet box green">
     <div class="portlet-title">
         <div class="caption">
@@ -16,7 +23,7 @@
                                 <span class="required" aria-required="true"> * </span>
                             </label>
                             <div class="col-sm-4">
-                               <select  class="form-control" placeholder=""  ></select>
+                               <select  class="form-control" placeholder="" id="cmbTypes" ></select>
                                 <span class="help-block">  </span>
                             </div>
                         </div>
@@ -69,5 +76,3 @@
         </form>
     </div>
 </div>
-
-

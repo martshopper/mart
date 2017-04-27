@@ -37,7 +37,7 @@ public class State implements Serializable{
 	@Column(name="CODE", length=50, nullable=false)
 	private String code;
 	
-	@Column(name="CODE", length=100, nullable=false)
+	@Column(name="NAME", length=100, nullable=false)
 	private String name;
 	
 	@Enumerated(EnumType.STRING)    

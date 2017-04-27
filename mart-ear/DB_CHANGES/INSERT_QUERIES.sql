@@ -36,3 +36,24 @@ INSERT INTO `STATE` (`NAME`, `CODE`, `STATUS`) VALUES ('Daman and Diu', 'DD', 'A
 INSERT INTO `STATE` (`NAME`, `CODE`, `STATUS`) VALUES ('Delhi', 'DL', 'A');
 INSERT INTO `STATE` (`NAME`, `CODE`, `STATUS`) VALUES ('Lakshadweep', 'LD', 'A');
 INSERT INTO `STATE` (`NAME`, `CODE`, `STATUS`) VALUES ('Pondicherry', 'PY', 'A');
+
+INSERT INTO MODULES(CLASS_NAME, FLAG, MODULE_CODE, MODULE_NAME, STATUS) VALUES('com.main.mart.entity.ChargeSlip','B', 'ChargeSlip','Charge Slip','A');
+INSERT INTO MODULES(CLASS_NAME, FLAG, MODULE_CODE, MODULE_NAME, STATUS) VALUES('com.main.mart.entity.ChargeSlipDetail','A', 'ChargeSlipDetail','ChargeSlip Detail','A');
+INSERT INTO MODULES(CLASS_NAME, FLAG, MODULE_CODE, MODULE_NAME, STATUS) VALUES('com.main.mart.entity.Credentials','B', 'Credentials','Credentials','A');
+INSERT INTO MODULES(CLASS_NAME, FLAG, MODULE_CODE, MODULE_NAME, STATUS) VALUES('com.main.mart.entity.Grn','B', 'Grn','Grn','A');
+INSERT INTO MODULES(CLASS_NAME, FLAG, MODULE_CODE, MODULE_NAME, STATUS) VALUES('com.main.mart.entity.GrnDetails','A', 'GrnDetails','GrnDetails','A');
+INSERT INTO MODULES(CLASS_NAME, FLAG, MODULE_CODE, MODULE_NAME, STATUS) VALUES('com.main.mart.entity.ItemMaster','B', 'ItemMaster','ItemMaster','A');
+INSERT INTO MODULES(CLASS_NAME, FLAG, MODULE_CODE, MODULE_NAME, STATUS) VALUES('com.main.mart.entity.ItemType','B', 'ItemType','ItemType','A');
+INSERT INTO MODULES(CLASS_NAME, FLAG, MODULE_CODE, MODULE_NAME, STATUS) VALUES('com.main.mart.entity.OptionConfig','A', 'OptionConfig','OptionConfig','A');
+INSERT INTO MODULES(CLASS_NAME, FLAG, MODULE_CODE, MODULE_NAME, STATUS) VALUES('com.main.mart.entity.Owner','B', 'Owner','Owner','A');
+INSERT INTO MODULES(CLASS_NAME, FLAG, MODULE_CODE, MODULE_NAME, STATUS) VALUES('com.main.mart.entity.State','A', 'State','State','A');
+INSERT INTO MODULES(CLASS_NAME, FLAG, MODULE_CODE, MODULE_NAME, STATUS) VALUES('com.main.mart.entity.StockGrnDetails','A', 'StockGrnDetails','StockGrnDetails','A');
+INSERT INTO MODULES(CLASS_NAME, FLAG, MODULE_CODE, MODULE_NAME, STATUS) VALUES('com.main.mart.entity.StockStatus','B', 'StockStatus','StockStatus','A');
+INSERT INTO MODULES(CLASS_NAME, FLAG, MODULE_CODE, MODULE_NAME, STATUS) VALUES('com.main.mart.entity.StoreMaster','B', 'StoreMaster','StoreMaster','A');
+INSERT INTO MODULES(CLASS_NAME, FLAG, MODULE_CODE, MODULE_NAME, STATUS) VALUES('com.main.mart.entity.TaxMaster','B', 'TaxMaster','TaxMaster','A');
+INSERT INTO MODULES(CLASS_NAME, FLAG, MODULE_CODE, MODULE_NAME, STATUS) VALUES('com.main.mart.entity.Type','B', 'Type','Type','A');
+INSERT INTO MODULES(CLASS_NAME, FLAG, MODULE_CODE, MODULE_NAME, STATUS) VALUES('com.main.mart.entity.TypeItems','B', 'TypeItems','TypeItems','A');
+INSERT INTO MODULES(CLASS_NAME, FLAG, MODULE_CODE, MODULE_NAME, STATUS) VALUES('com.main.mart.entity.User','B', 'User','User','A');
+INSERT INTO MODULES(CLASS_NAME, FLAG, MODULE_CODE, MODULE_NAME, STATUS) VALUES('com.main.mart.entity.VendorMaster','B', 'VendorMaster','VendorMaster','A');
+INSERT INTO MODULES(CLASS_NAME, FLAG, MODULE_CODE, MODULE_NAME, STATUS) VALUES('com.main.mart.entity.ZipCodes','A', 'ZipCodes','ZipCodes','A');
+INSERT INTO MODULES(CLASS_NAME, FLAG, MODULE_CODE, MODULE_NAME, STATUS) VALUES('com.main.mart.entity.TaxSchemeMaster','A', 'TaxSchemeMaster','TaxSchemeMaster','A');
