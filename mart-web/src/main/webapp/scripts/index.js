@@ -1,5 +1,5 @@
 
-  function openScreen(screen_name) {
+ function openScreen(screen_name) {
     $(".master_container").empty();
     if(screen_name=="Dashboard") {
       $(".master_container").load("dashboard.html");
@@ -11,6 +11,10 @@
       $(".master_container").load("type.html");
     }else if(screen_name=="TypeItems") {
       $(".master_container").load("typeItems.html");
+    }else if(screen_name=="vendorMaster") {
+      $(".master_container").load("vendorMaster.html");
+    }else if(screen_name=="storeMaster") {
+      $(".master_container").load("storeMaster.html");
     }
   }
 
@@ -44,22 +48,18 @@ function globalWarningAlert(message) {
     toastr.warning(message, "Warning");
 }
 
-function logout(){
-  
+function logout(){  
     $.ajax({
         type: "GET",
         url: 'rest/logout',
-        success: function()
-        { 
+        success: function() { 
           reloadScreen();
-        } 
-        ,
-        error: function(error)
-        {
+        },
+        error: function(error) {
           reloadScreen();
         }
     });
-  } 
+ } 
     
   function reloadScreen(){
     var loc = window.location.href.split("?");
@@ -74,13 +74,8 @@ function logout(){
         }
       } 
   }
-
-
 $(document).ready(function(){
-
-   openScreen('Dashboard');
-
-
+  openScreen('Dashboard');
   $("#linkDashboard").click(function () {
       openScreen('Dashboard');
   });
@@ -90,33 +85,27 @@ $(document).ready(function(){
   $("#linkSrchChrgSlip").click(function () {
       openScreen('Dashboard');
   });
-
   $("#linkSrchReceipt").click(function () {
       openScreen('Dashboard');
   });
-
   $("#linkUser").click(function () {
       openScreen('User');
   });
-
   $("#linkOwner").click(function () {
       openScreen('Owner');
   });
-   $("#linkVendor").click(function () {
-      openScreen('Owner');
+  $("#linkVendor").click(function () {
+      openScreen('vendorMaster');
   });
-   $("#linkStore").click(function () {
-	      openScreen('Owner');
-	 });
-
+  $("#linkStore").click(function () {
+      openScreen('storeMaster');
+  });
   $("#linkType").click(function () {
       openScreen('Type');
   });
-
   $("#linkTypeItems").click(function () {
       openScreen('TypeItems');
-  });
-  
+  });  
   $("#linkItemType").click(function () {
       openScreen('TypeItems');
   });
@@ -129,12 +118,8 @@ $(document).ready(function(){
    $("#linkCredentials").click(function () {
       openScreen('TypeItems');
   });
-
   $("#linkLogout").click(function () {
       logout();
   });
-
-
-
 });
 

@@ -197,10 +197,7 @@ $(document).ready(function() {
                                 <span class="required" aria-required="true">  </span>
                             </label>
                             <div class="col-sm-8">
-                               <select name="sex" id="sex" class="form-control">
-                                    <option value="-1">--Select--</option>
-                                  
-                                </select>
+                               <input type="text" class="form-control" placeholder="">
                                 <span class="help-block">  </span>
                             </div>
                         </div>
@@ -211,10 +208,7 @@ $(document).ready(function() {
                                 <span class="required" aria-required="true">  </span>
                             </label>
                             <div class="col-sm-8">
-                                <select name="sex" id="sex" class="form-control">
-                                    <option value="-1">--Select--</option>
-                                   
-                                </select>
+                                <input type="text" class="form-control" placeholder="">
                                 <span class="help-block">  </span>
                             </div>
                         </div>
@@ -252,11 +246,11 @@ $(document).ready(function() {
                     <div class="col-sm-12">
                         <div class="row">
                             <div class="col-sm-offset-4 col-sm-8">
-                                <button type="button" class="btn btn-default">Save</button>
+                                <button type="button" class="btn btn-primary">Save</button>
                                 <button type="button" class="btn btn-primary">Delete</button>
                                 <button type="button" class="btn btn-primary">Reset</button>
-                                <button type="button" class="btn btn-success">Search</button>
-                                <button type="button" class="btn btn-info">Help</button>
+                                <button type="button" class="btn btn-primary">Search</button>
+                                <button type="button" class="btn btn-primary">Help</button>
                             </div>
                         </div>
                     </div>
@@ -265,4 +259,27 @@ $(document).ready(function() {
 
         </form>
     </div>
+</div>
+<div class="portlet box green">
+	<div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-globe"></i>List of User(s)</div>
+        <div class="tools"> </div>
+    </div>
+    <div class="portlet-body">
+		<table id="" style="width:100%" class="table table-striped table-bordered table-hover dt-responsive" cellspacing="0">
+			<thead>
+				<tr>
+					<th width="">Username</th>
+					<th width="">First Name</th>
+					<th width="">Last Name</th>
+					<th width="">DOB</th>
+					<th width="">Gender</th>
+					<th width="">Level</th>
+					<th width="">Email</th>
+					<th width="">Phone</th>
+				 </tr>
+			</thead>
+		</table>
+	</div>
 </div>
