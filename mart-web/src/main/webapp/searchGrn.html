@@ -1,0 +1,226 @@
+<div class="portlet box green">
+    <div class="portlet-title">
+        <div class="caption">
+        <i class="fa fa-gift"></i>Search GRN </div>
+    </div>
+	<div class="portlet-body form">	
+		<form  class="form-horizontal" id="type_form">
+            <div class="form-body">
+                <div class="row">
+					<div class="col-sm-4">
+                         <div class="form-group">
+							<label class="control-label col-sm-4">Invoice Date:</label>
+							<div class="col-sm-8">
+								<div class="input-group input-large date-picker input-daterange" data-date="10/11/2012" data-date-format="mm/dd/yyyy">
+									<input type="text" class="form-control" name="from">
+									<span class="input-group-addon"> To </span>
+									<input type="text" class="form-control" name="to"> </div>
+								<!-- /input-group >
+								<span class="help-block"></span-->
+							</div>
+						</div>
+                    </div>
+					<div class="col-sm-4">
+                         <div class="form-group">
+							<label class="control-label col-sm-4">Receipt Date:</label>
+							<div class="col-sm-8">
+								<div class="input-group input-large date-picker input-daterange" data-date="10/11/2012" data-date-format="mm/dd/yyyy">
+									<input type="text" class="form-control" name="from">
+									<span class="input-group-addon"> To </span>
+									<input type="text" class="form-control" name="to"> </div>
+								<!-- /input-group>
+								<span class="help-block"></span -->
+							</div>
+						</div>
+                    </div>
+					<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label col-sm-4">GRN #:
+                                <span class="required" aria-required="true"> </span>
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" placeholder="Enter GRN No">
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                    </div>
+					<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label col-sm-4">Vendor:
+                                <span class="required" aria-required="true"> </span>
+                            </label>
+                            <div class="col-sm-8">
+                               <select name="" id="" class="form-control">
+                                    <option value="-1">--Select--</option>
+                                </select>
+                                <span class="help-block">  </span>
+                            </div>
+                        </div>
+                    </div>
+					<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label col-sm-4">Store:
+                                <span class="required" aria-required="true"> </span>
+                            </label>
+                            <div class="col-sm-8">
+                               <select name="" id="" class="form-control">
+                                    <option value="-1">--Select--</option>
+                                </select>
+                                <span class="help-block">  </span>
+                            </div>
+                        </div>
+                    </div>
+					<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label col-sm-4">Invoice No:
+                                <span class="required" aria-required="true"> </span>
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" placeholder="Enter Invoice No">
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                    </div>					
+				</div>
+			</div>
+			<div class="form-actions">
+				<div class="col-sm-12">
+					<div class="col-sm-offset-4 col-sm-8">
+						<button type="submit" id="" class="btn btn-primary">Search</button>
+						<button type="button" id="" class="btn btn-primary">Reset</button>
+						<button type="button" id="" class="btn btn-primary">Add New</button>
+						<button type="button" id="" class="btn btn-primary">Help</button>
+						<a class="btn dark btn-outline sbold" data-toggle="modal" href="#full"> View Demo </a>
+					</div>
+				</div>
+            </div>
+		</form>
+	</div>
+</div>
+<div class="portlet box green">
+	<div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-globe"></i>List of GRN(s)</div>
+        <div class="tools"> </div>
+    </div>
+    <div class="portlet-body">
+		<table id="tblSrchGrn" class="table table-striped table-bordered table-hover dt-responsive" width="100%" cellspacing="0">
+				<thead>
+					<tr>
+						<th >GRN Date</th>
+						<th >GRN #</th>
+						<th >Vendor</th>
+						<th >Store</th>
+						<th >Invoice #</th>
+						<th >Invoice Date</th>
+						<th >Receipt Date</th>
+						<th >Total Amount</th>
+					 </tr>
+				</thead>
+		</table>
+    </div>
+</div>
+<div class="modal fade" id="full" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog modal-full">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+				<h4 class="modal-title">Add GRN</h4>
+			</div>
+			<div class="modal-body">
+				<form  class="form-horizontal" id="">
+					<div class="form-body">
+						<div class="row">
+							<div class="col-sm-4">
+								 <div class="form-group">
+									<label class="control-label col-sm-4">GRN #:</label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control" placeholder="" readonly>
+										<span class="help-block"></span>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-4">
+								<div class="form-group">
+									<label class="control-label col-sm-4">Vendor:
+										<span class="required" aria-required="true">* </span>
+									</label>
+									<div class="col-sm-8">
+									   <select name="" id="" class="form-control">
+											<option value="-1">--Select--</option>
+										</select>
+										<span class="help-block">  </span>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-4">
+								<div class="form-group">
+									<label class="control-label col-sm-4">Store:
+										<span class="required" aria-required="true">* </span>
+									</label>
+									<div class="col-sm-8">
+									   <select name="" id="" class="form-control">
+											<option value="-1">--Select--</option>
+										</select>
+										<span class="help-block">  </span>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-4">
+								<div class="form-group">
+									<label class="control-label col-sm-4">Invoice Date:
+										<span class="required" aria-required="true"> * </span>
+									</label>
+									<div class="col-sm-8 date">
+										<div class="input-group input-append date" >
+											<input type="text" class="form-control" id="datePicker">
+											<span class="input-group-btn">
+												<button class="btn default" type="button">
+													<i class="fa fa-calendar"></i>
+												</button>
+											</span>											
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-4">
+								<div class="form-group">
+									<label class="control-label col-sm-4">Invoice No:
+										<span class="required" aria-required="true"> </span>
+									</label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control" placeholder="Enter Invoice No">
+										<span class="help-block"></span>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-4">
+								<div class="form-group">
+									<label class="control-label col-sm-4">Receipt Date:
+										<span class="required" aria-required="true"> * </span>
+									</label>
+									<div class="col-sm-8 date">
+										<div class="input-group input-append date" >
+											<input type="text" class="form-control" id="datePicker">
+											<span class="input-group-btn">
+												<button class="btn default" type="button">
+													<i class="fa fa-calendar"></i>
+												</button>
+											</span>											
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+                    </div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn dark btn-outline" data-dismiss="modal">Close</button>
+				<button type="button" class="btn green">Save changes</button>
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>

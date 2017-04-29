@@ -15,6 +15,8 @@
       $(".master_container").load("vendorMaster.html");
     }else if(screen_name=="storeMaster") {
       $(".master_container").load("storeMaster.html");
+    }else if(screen_name=="searchGrn") {
+      $(".master_container").load("searchGrn.html");
     }
   }
 
@@ -80,7 +82,7 @@ $(document).ready(function(){
       openScreen('Dashboard');
   });
   $("#linkSrchGrn").click(function () {
-      openScreen('Dashboard');
+      openScreen('searchGrn');
   });
   $("#linkSrchChrgSlip").click(function () {
       openScreen('Dashboard');
@@ -122,4 +124,3 @@ $(document).ready(function(){
       logout();
   });
 });
-
