@@ -11,6 +11,8 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import com.main.mart.common.dto.UserTO;
+
 /**
  * @author Hitesh
  *
@@ -24,5 +26,9 @@ public interface CommonIf {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response logoutUser(@Context HttpServletRequest req);
 	
+	@GET
+	@Path("/loginuser")
+	@Produces(MediaType.APPLICATION_JSON)
+	public UserTO getLoginUser();
 	
 }

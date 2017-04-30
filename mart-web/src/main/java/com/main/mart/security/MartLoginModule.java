@@ -92,6 +92,7 @@ public class MartLoginModule extends UsernamePasswordLoginModule{
 			password = hashPassword(password);
 			User user = lif.checkUserAndPassword(username, password);
 			if(user != null && user.getUserName() != null){
+				MartUtilities.setLoginUserId(user.getId());
 				status = true;
 			}
 		}catch(Exception e){

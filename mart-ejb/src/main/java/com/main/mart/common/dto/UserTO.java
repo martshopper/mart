@@ -36,6 +36,7 @@ public class UserTO {
 	private String username;
 	private String workPhone;
 	private String zip;
+	private String userFullName;
 	public String getId() {
 		return id;
 	}
@@ -203,5 +204,11 @@ public class UserTO {
 	}
 	public void setZip(String zip) {
 		this.zip = zip;
+	}
+	public String getUserFullName() {
+		return userFullName;
+	}
+	public void setUserFullName(String userFullName) {
+		this.userFullName = userFullName;
 	}
 }

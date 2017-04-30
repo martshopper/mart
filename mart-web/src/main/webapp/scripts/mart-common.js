@@ -29,3 +29,8 @@ mart = {
 		});
 	}
 };
+martSession = {
+	userId: "",
+	username: "",
+	userFullName: ""
+};

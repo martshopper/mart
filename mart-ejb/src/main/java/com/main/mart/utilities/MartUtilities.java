@@ -23,6 +23,7 @@ import com.main.mart.entity.User;
  *
  */
 public class MartUtilities {
+	private static Integer user_id;
 	private static final char[] PASSWORD = "enfldsgbnlsngdlksdsgm".toCharArray();
 	private static final byte[] SALT = { (byte) 0xde, (byte) 0x33, (byte) 0x10, (byte) 0x12, (byte) 0xde, (byte) 0x33,
             (byte) 0x10, (byte) 0x12, };
@@ -129,5 +130,11 @@ public class MartUtilities {
 	}
 	public static void showLog(Object e) {
 		logger.info(e);
+	}
+	public static void setLoginUserId(Integer userId) {
+		user_id = userId;
+	}
+	public static Integer getUserId() {
+		return user_id;
 	}
 }

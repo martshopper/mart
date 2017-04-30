@@ -125,4 +125,15 @@ $(document).ready(function(){
   $("#linkLogout").click(function () {
       logout();
   });
+  $.ajax({
+      type: "GET",
+      url: 'rest/loginuser',
+      success: function(jsonObject) {
+    	  martSession.userId = jsonObject.id;
+    	  martSession.username = jsonObject.username;
+    	  martSession.userFullName = jsonObject.userFullName;
+		  $(".username").text(jsonObject.userFullName);
+      },
+      error: function(error) {  }
+  });
 });
