@@ -99,6 +99,7 @@ public class ItemTypeEJBImpl implements ItemTypeEJBIf {
 			ItemType itemType = em.find(ItemType.class, id);
 			em.remove(itemType);
 			em.flush();
+			responseStatus.setStatus(true);
 		}catch (Exception e) {
 			responseStatus.setStatus(false);
 			responseStatus.setErrorMessage(e.getMessage());

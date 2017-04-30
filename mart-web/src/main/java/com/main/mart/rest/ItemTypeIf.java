@@ -41,5 +41,5 @@ public interface ItemTypeIf {
 	@DELETE
 	@Path("/itemtype/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response deleteItemType(@PathParam("id") Integer id);
+	public Response deleteItemTypeById(@PathParam("id") Integer id);
 }

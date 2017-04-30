@@ -6,6 +6,7 @@ package com.main.mart.rest;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.ejb.EJB;
@@ -146,6 +147,35 @@ public class TypeItemsImpl implements TypeItemsIf {
 			builder = Response.status(400).entity(response);
 		}
 		return builder.build();
+	}
+
+	@Override
+	public TypeItemsTOs getTypeItemsTypeCode(String typeCode) {
+		TypeItemsTOs typeItemsTOs = new TypeItemsTOs();
+		try {
+			Collection<TypeItemsTO> colTypeItems = new ArrayList<TypeItemsTO>();
+			List<TypeItems> typeItems = typeItemsEJBIf.getTypeItemsByTypeCode(typeCode);
+			if(typeItems != null && !typeItems.isEmpty()) {
+				for(TypeItems items : typeItems) {
+					TypeItemsTO itemsTO = new TypeItemsTO();
+					itemsTO.setId(items.getId().toString());
+					itemsTO.setItemCode(items.getCode());
+					itemsTO.setItemDescription(items.getDescription());
+					/*itemsTO.setTypeId(items.getTypeId().getId().toString());
+					itemsTO.setTypeCode(items.getTypeId().getTypeCode());
+					itemsTO.setTypeDescription(items.getTypeId().getTypeDescription());
+					itemsTO.setStatus(items.getStatus().toString());*/
+					colTypeItems.add(itemsTO);
+				}
+			}
+			typeItemsTOs.setDraw("1");
+			typeItemsTOs.setRecordsFiltered(colTypeItems.size()+"");
+			typeItemsTOs.setRecordsTotal(colTypeItems.size()+"");
+			typeItemsTOs.setTypeItemsTOs(colTypeItems);
+		}catch (Exception e) {
+			MartUtilities.showErrorLog(e);
+		}
+		return typeItemsTOs;
 	}
 
 }

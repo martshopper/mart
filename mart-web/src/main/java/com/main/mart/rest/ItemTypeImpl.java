@@ -118,7 +118,7 @@ public class ItemTypeImpl implements ItemTypeIf {
 	}
 
 	@Override
-	public Response deleteItemType(Integer id) {
+	public Response deleteItemTypeById(Integer id) {
 		Map<String, String> response = new HashMap<String, String>();
 		try {
 			ResponseStatus responseStatus = itemTypeEJBIf.deleteItemType(id);
@@ -129,6 +129,7 @@ public class ItemTypeImpl implements ItemTypeIf {
 				builder = Response.status(400).entity(response);
 			}
 		}catch (Exception e) {
+			e.printStackTrace();
 			MartUtilities.showErrorLog(e);
 			response.put("exception", e.getMessage());
 			builder = Response.status(400).entity(response);
@@ -144,6 +145,8 @@ public class ItemTypeImpl implements ItemTypeIf {
 				itemTypeTO.setTypeName(itemType.getTypeName());
 				if(itemType.getTypeCategoryId() != null) {
 					itemTypeTO.setTypeCategoryId(itemType.getTypeCategoryId().getId().toString());
+					itemTypeTO.setTypeCategoryDes(itemType.getTypeCategoryId().getDescription());
+					itemTypeTO.setTypeCategoryCode(itemType.getTypeCategoryId().getCode());
 				}
 				itemTypeTO.setStatus(String.valueOf(itemType.getStatus()));
 				return itemTypeTO;

@@ -10,6 +10,8 @@ package com.main.mart.common.dto;
 public class ItemTypeTO {
 	private String id;
 	private String typeCategoryId;
+	private String typeCategoryCode;
+	private String typeCategoryDes;
 	private String status;
 	private String typeCode;
 	private String typeName;
@@ -24,6 +26,18 @@ public class ItemTypeTO {
 	}
 	public void setTypeCategoryId(String typeCategoryId) {
 		this.typeCategoryId = typeCategoryId;
+	}
+	public String getTypeCategoryCode() {
+		return typeCategoryCode;
+	}
+	public void setTypeCategoryCode(String typeCategoryCode) {
+		this.typeCategoryCode = typeCategoryCode;
+	}
+	public String getTypeCategoryDes() {
+		return typeCategoryDes;
+	}
+	public void setTypeCategoryDes(String typeCategoryDes) {
+		this.typeCategoryDes = typeCategoryDes;
 	}
 	public String getStatus() {
 		return status;

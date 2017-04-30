@@ -42,4 +42,10 @@ public interface TypeItemsIf {
 	@Path("/typeitems/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response deleteTypeItems(@PathParam("id") Integer id);
+	
+	@GET
+	@Path("/typeitems/{typeCode}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public TypeItemsTOs getTypeItemsTypeCode(@PathParam("typeCode") String typeCode);
+	
 }

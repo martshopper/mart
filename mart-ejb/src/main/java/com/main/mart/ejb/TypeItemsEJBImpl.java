@@ -4,6 +4,7 @@
 package com.main.mart.ejb;
 
 import java.util.Collection;
+import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -124,6 +125,26 @@ public class TypeItemsEJBImpl implements TypeItemsEJBIf {
 			responseStatus.setErrorMessage(e.getMessage());
 		}
 		return responseStatus;
+	}
+
+	@Override
+	public List<TypeItems> getTypeItemsByTypeCode(String typeCode) {
+		try {
+			StringBuilder hqlBuilder = new StringBuilder();
+			hqlBuilder.append("SELECT t FROM TypeItems t WHERE t.status=:status");
+			if(!StringUtils.isNullOrEmpty(typeCode)) {
+				hqlBuilder.append(" AND t.typeId.typeCode = :typeCode");
+			}
+			TypedQuery<TypeItems> typedQuery = em.createQuery(hqlBuilder.toString(), TypeItems.class);
+			typedQuery.setParameter("status", StatusEnum.A);
+			if(!StringUtils.isNullOrEmpty(typeCode)) {
+				typedQuery.setParameter("typeCode", typeCode);
+			}
+			return typedQuery.getResultList();
+		}catch (Exception e) {
+			MartUtilities.showErrorLog(e);
+		}
+		return null;
 	}
 
 }

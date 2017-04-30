@@ -4,6 +4,7 @@
 package com.main.mart.ejb;
 
 import java.util.Collection;
+import java.util.List;
 
 import com.main.mart.common.dto.TypeItemsTO;
 import com.main.mart.entity.TypeItems;
@@ -19,4 +20,5 @@ public interface TypeItemsEJBIf {
 	public TypeItems getTypeItemsById(Integer id);	
 	public Collection<TypeItems> getAllTypeItems(TypeItemsTO itemsTO);
 	public ResponseStatus deleteTypeItems(Integer id);
+	public List<TypeItems> getTypeItemsByTypeCode(String typeCode);
 }

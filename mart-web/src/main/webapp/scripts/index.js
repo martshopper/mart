@@ -17,6 +17,8 @@
       $(".master_container").load("storeMaster.html");
     }else if(screen_name=="searchGrn") {
       $(".master_container").load("searchGrn.html");
+    }else if(screen_name=="ItemType") {
+      $(".master_container").load("itemType.html");
     }
   }
 
@@ -109,7 +111,7 @@ $(document).ready(function(){
       openScreen('TypeItems');
   });  
   $("#linkItemType").click(function () {
-      openScreen('TypeItems');
+      openScreen('ItemType');
   });
   $("#linkItemMaster").click(function () {
       openScreen('TypeItems');
