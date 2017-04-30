@@ -13,6 +13,8 @@ public class TypeItemsTO {
 	private String itemDescription;
 	private String status;
 	private String typeId;
+	private String typeCode;
+	private String typeDescription;
 	public String getId() {
 		return id;
 	}
@@ -42,5 +44,17 @@ public class TypeItemsTO {
 	}
 	public void setTypeId(String typeId) {
 		this.typeId = typeId;
+	}
+	public String getTypeCode() {
+		return typeCode;
+	}
+	public void setTypeCode(String typeCode) {
+		this.typeCode = typeCode;
+	}
+	public String getTypeDescription() {
+		return typeDescription;
+	}
+	public void setTypeDescription(String typeDescription) {
+		this.typeDescription = typeDescription;
 	}
 }

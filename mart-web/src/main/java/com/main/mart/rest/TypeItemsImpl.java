@@ -50,7 +50,9 @@ public class TypeItemsImpl implements TypeItemsIf {
 					itemsTO.setItemCode(items.getCode());
 					itemsTO.setItemDescription(items.getDescription());
 					itemsTO.setTypeId(items.getTypeId().getId().toString());
-					itemsTO.setStatus(items.getStatusEnum().toString());
+					itemsTO.setTypeCode(items.getTypeId().getTypeCode());
+					itemsTO.setTypeDescription(items.getTypeId().getTypeDescription());
+					itemsTO.setStatus(items.getStatus().toString());
 					colTypeItems.add(itemsTO);
 				}
 			}
@@ -75,7 +77,7 @@ public class TypeItemsImpl implements TypeItemsIf {
 				itemsTO.setItemCode(items.getCode());
 				itemsTO.setItemDescription(items.getDescription());
 				itemsTO.setTypeId(items.getTypeId().getId().toString());
-				itemsTO.setStatus(items.getStatusEnum().toString());
+				itemsTO.setStatus(items.getStatus().toString());
 			}
 		}catch (Exception e) {
 			MartUtilities.showErrorLog(e);
@@ -109,7 +111,7 @@ public class TypeItemsImpl implements TypeItemsIf {
 				}else {
 					typeItems.setDescription(null);
 				}
-				typeItems.setStatusEnum(StatusEnum.A);
+				typeItems.setStatus(StatusEnum.A);
 				ResponseStatus responseStatus = typeItemsEJBIf.addTypeItems(typeItems);
 				if(responseStatus.getStatus()) {
 					response.put("id", ""+responseStatus.getPersistingId());

@@ -47,7 +47,7 @@ public class TypeItems implements Serializable{
 	 
 	 @Enumerated(EnumType.STRING)
 	 @Column(name="STATUS", nullable=false)
-	 private StatusEnum statusEnum;
+	 private StatusEnum status;
 	 
 	 @Lob
 	 @Column(name = "COMMENTS", columnDefinition="TEXT")
@@ -84,12 +84,12 @@ public class TypeItems implements Serializable{
 		this.description = description;
 	}
 
-	public StatusEnum getStatusEnum() {
-		return statusEnum;
+	public StatusEnum getStatus() {
+		return status;
 	}
 
-	public void setStatusEnum(StatusEnum statusEnum) {
-		this.statusEnum = statusEnum;
+	public void setStatus(StatusEnum status) {
+		this.status = status;
 	}
 
 	public String getComments() {

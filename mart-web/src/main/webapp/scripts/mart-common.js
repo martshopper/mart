@@ -1,19 +1,25 @@
 mart = {
 	loadCombo: function(options) {
-		var elementId = options['elementId'];
-		var url = options['url'];
-		var root = options['root'];//Need To Use
-		var value = options['value'];//Need To Use
-		var text = options['text'];//Need To Use
-		$("#"+elementId).empty();
-		$("#"+elementId).append("<option value='-1'>--Select--</option>");
+		var restURL = options['restURL'];
+        var componentId = options['comboComponentId'];
+        var findCmbRoot = options['comboRootRef'];
+        var findCmbId = options['comboIdRef'];
+        var findCmbValue = options['comboValueRef'];
+        var sourceScreen = options['sourceScreen'];
+        var setDefault = options['setDefault'];
+        var defid = options['defaultid'];
+		$("#"+componentId).empty();
+		$("#"+componentId).append("<option value=''>--Select--</option>");
 		$.ajax({
-			url: url,
+			url: restURL,
 			type: 'GET',
-			success: function (data) {
-				if(data != null && data != undefined && data.typeTOs != null) {
-					for(var i=0;i<data.typeTOs.length;i++){
-						$("#"+elementId).append("<option value='"+data.typeTOs[i].id+"'>"+data.typeTOs[i].typeCode+"</option>");
+			success: function (jsonObject) {
+				 if (jsonObject != null && JSON.stringify(jsonObject) != "" && JSON.stringify(jsonObject) != null && jsonObject[findCmbRoot] != null) {
+					var dataArray = jsonObject[findCmbRoot];
+					for (var i = 0; i < dataArray.length; i++) {
+                        var id = dataArray[i][findCmbId];
+                        var name = dataArray[i][findCmbValue];
+						$("#" + componentId).append("<option value=" + id + ">"+ name + "</option>");
 					}
 				}
 			},

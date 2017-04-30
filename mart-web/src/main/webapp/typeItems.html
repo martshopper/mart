@@ -1,78 +1,258 @@
-<script>
+<script type="text/javascript">
+var typeItemsDatatable;
+$(document).ready(function() {
 	mart.loadCombo({
-		elementId : "cmbTypes",
-		url : "rest/type",
-		root : "typeTOs",
+		comboComponentId : "typeId",
+		restURL : "rest/type",
+		comboRootRef : "typeTOs",
+		comboIdRef : "id",
+		comboValueRef : "typeCode",
 	});
+   function loadTypeItemsGrid(params) {
+		typeItemsDatatable = $('#tblTypeItems').DataTable({
+			"processing": false,
+			"searching": true,
+			"serverSide": true,
+			"processing": true,
+			"serverSide": false,
+			"paging": true,
+			"orderCellsTop": true,
+            "destroy": true,
+            dom: 'Bfrtip',
+            buttons: [{
+                extend: "print",
+                className: "btn default"
+            }, {
+                extend: "pdf",
+                className: "btn default"
+            }, {
+                extend: "csv",
+                className: "btn default"
+            }],
+			"columns": [
+				{ "data": "id", "render": function ( data, type, row ) {
+						return '<i class="glyphicon glyphicon-pencil btn btn-sm" onclick="showTypeItem('+data+')"/>';
+					}
+				},
+				{ "data": "typeCode","orderable": "true"},
+				{ "data": "itemCode","orderable": "true"},
+				{ "data": "itemDescription", "orderable": "true" }				
+			],
+			"ajax": {
+			"url": "rest/typeitems?"+params,
+			"dataSrc": "typeItemsTOs",
+			"type": "GET"
+			}
+		});
+	}
+    $('#tblTypeItems').on('click', 'tr', function () {
+        if ( !$(this).hasClass('selected')) {
+            typeItemsDatatable.$('tr.selected').removeClass('selected');
+            if($(this).hasClass("odd") || $(this).hasClass("even")){
+                $(this).addClass('selected');
+				console.log($(this));
+            }
+        }
+    });
+	$("#btnResetTypeItems").click(function() {
+			$('#form_type_items').data('bootstrapValidator').resetForm();
+			$("#typeItemId").val("");
+			$("#typeId").val("");
+			$("#itemCode").val("");
+			$("#itemDescription").val("");
+			$("#btnSaveUpdateTypeItems").text("Save");
+			loadTypeItemsGrid("");
+	});
+	$("#btnDeleteTypeItems").click(function() {
+		if($("#typeItemId").val() != "") {
+			$.ajax({
+				url: 'rest/typeitems/'+$("#typeItemId").val(),
+				type: 'DELETE',
+				success: function (data) {
+					globalSuccessAlert("Type Items Deleted Successfully");
+					$("#btnResetTypeItems").click();
+				},
+				error: function (error) {
+					globalErrorAlert($.parseJSON(error.responseText).exception);
+				},            
+			});
+		}else {
+			globalWarningAlert("Please select record to Delete");
+		}
+	});
+	$("#btnSearchTypeItems").click(function() {
+		var url = 'itemCode='+$("#itemCode").val()+'&description='+$("#itemDescription").val();
+
+		loadTypeItemsGrid('itemCode='+$("#itemCode").val()+'&description='+$("#itemDescription").val()+'&typeId='+$("#typeId").val());
+	});	
+	loadTypeItemsGrid("");
+	$('#form_type_items').bootstrapValidator({
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            //validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            typeId: {
+                validators: {
+                        stringLength: {
+                        min: 1,
+						max: 100,
+                    },
+                        notEmpty: {
+                        message: 'Please select Type'
+                    }
+                }
+            },
+			itemCode: {
+                validators: {
+                        stringLength: {
+                        min: 1,
+						max: 20,
+                    },
+                        notEmpty: {
+                        message: 'Please enter Code'
+                    }
+                }
+            },
+            itemDescription: {
+                validators: {
+                     stringLength: {
+                        min: 1,
+						max: 255,
+                    },
+                    notEmpty: {
+                        message: 'Please enter Description'
+                    }
+                }
+			}
+        }
+    }).on('success.form.bv', function(e) {
+            $('#form_type_items').data('bootstrapValidator').resetForm();
+            e.preventDefault();
+            var $form = $(e.target);
+            var bv = $form.data('bootstrapValidator');
+			var message = "Type Item Added Successfully";
+			if($("#typeItemId").val() != "") {
+				message = "Type Item Updated Successfully";
+			}
+			var typeItem = {
+				id : $("#typeItemId").val(),
+				typeId : $("#typeId").val(),
+				itemCode : $("#itemCode").val(),
+				itemDescription : $("#itemDescription").val()
+			};
+			$.ajax({
+				url: 'rest/typeitems',
+				type: 'POST',
+				contentType: "application/json; charset=utf-8",
+				data: JSON.stringify(typeItem),
+				success: function (data) {
+					globalSuccessAlert(message);
+					$("#btnResetTypeItems").click();
+				},
+				error: function (error) {
+					globalErrorAlert($.parseJSON(error.responseText).exception);
+				},            
+			});
+        });
+});
+function showTypeItem(id) {
+	$.ajax({
+			url: 'rest/typeitems/'+id,
+			type: 'GET',
+			success: function (data) {			
+				$("#typeItemId").val(data.id);
+				$("#typeId").val(data.typeId);
+				$("#itemCode").val(data.itemCode);
+				$("#itemDescription").val(data.itemDescription);
+				$("#btnSaveUpdateTypeItems").text("Update");
+			},
+			error: function (error) {
+				globalErrorAlert($.parseJSON(error.responseText).exception);
+			},            
+	});
+}	
 </script>
 <div class="portlet box green">
     <div class="portlet-title">
         <div class="caption">
         <i class="fa fa-gift"></i>Type Items</div>
     </div>
-    <div class="portlet-body form">
-      
-       <form  class="form-horizontal">
+    <div class="portlet-body form">      
+       <form  class="form-horizontal" id="form_type_items">
             <div class="form-body">
                 <div class="row">
-
-
                 	<div class="col-sm-12">
                         <div class="form-group">
                             <label class="control-label col-sm-2">Type:
                                 <span class="required" aria-required="true"> * </span>
                             </label>
                             <div class="col-sm-4">
-                               <select  class="form-control" placeholder="" id="cmbTypes" ></select>
+                               <select  class="form-control" id="typeId" name="typeId"></select>
                                 <span class="help-block">  </span>
                             </div>
                         </div>
                     </div>
-
-                   
-
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label class="control-label col-sm-4">Code
                                 <span class="required" aria-required="true"> * </span>
                             </label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" placeholder="">
+                                <input type="text" class="form-control" id="itemCode" name="itemCode" placeholder="Enter Item Code">
                                 <span class="help-block"></span>
                             </div>
                         </div>
-                    </div>
-                  
+                    </div>                  
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label class="control-label col-sm-4">Description:
                                 <span class="required" aria-required="true"> * </span>
                             </label>
                             <div class="col-sm-8">
-                               <input type="text" class="form-control" placeholder="">
+                               <input type="text" class="form-control" id="itemDescription" name="itemDescription" placeholder="Enter Item Description">
                                 <span class="help-block">  </span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
             <div class="form-actions">
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="row">
                             <div class="col-sm-offset-4 col-sm-8">
-                                <button type="button" class="btn btn-default">Save</button>
-                                <button type="button" class="btn btn-primary">Delete</button>
-                                <button type="button" class="btn btn-primary">Reset</button>
-                                <button type="button" class="btn btn-success">Search</button>
-                                <button type="button" class="btn btn-info">Help</button>
+                                <button type="submit" id="btnSaveUpdateTypeItems" class="btn btn-primary">Save</button>
+                                <button type="button" id="btnDeleteTypeItems" class="btn btn-primary">Delete</button>
+                                <button type="button" id="btnResetTypeItems" class="btn btn-primary">Reset</button>
+                                <button type="button" id="btnSearchTypeItems" class="btn btn-primary">Search</button>
+                                <button type="button" id="btnHelpTypeItems" class="btn btn-primary">Help</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
+			<input type="hidden" name="typeItemId" id="typeItemId" value="" />
         </form>
+    </div>
+</div>
+<div class="portlet box green">
+	<div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-globe"></i>List of Type Items(s)</div>
+        <div class="tools"> </div>
+    </div>
+    <div class="portlet-body">
+	    <table class="table table-striped table-bordered table-hover dt-responsive" width="100%" id="tblTypeItems" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th width="1%"></th>
+                    <th width="20%">Type</th>
+                    <th width="20%">Code</th>
+                    <th width="59%">Description</th>
+                </tr>
+            </thead>
+        </table>
     </div>
 </div>

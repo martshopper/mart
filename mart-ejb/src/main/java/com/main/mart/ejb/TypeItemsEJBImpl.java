@@ -15,6 +15,7 @@ import com.main.mart.entity.TypeItems;
 import com.main.mart.utilities.MartUtilities;
 import com.main.mart.utilities.ResponseStatus;
 import com.main.mart.utilities.StatusEnum;
+import com.main.mart.utilities.StringUtils;
 
 /**
  * @author Hitesh
@@ -82,24 +83,24 @@ public class TypeItemsEJBImpl implements TypeItemsEJBIf {
 		try {
 			StringBuilder hqlBuilder = new StringBuilder();
 			hqlBuilder.append("SELECT t FROM TypeItems t WHERE t.status=:status");
-			if(itemsTO.getItemCode() != null) {
+			if(!StringUtils.isNullOrEmpty(itemsTO.getItemCode())) {
 				hqlBuilder.append(" AND t.code LIKE :code");
 			}
-			if(itemsTO.getItemDescription() != null) {
+			if(!StringUtils.isNullOrEmpty(itemsTO.getItemDescription())) {
 				hqlBuilder.append(" AND t.description LIKE :desc");
 			}
-			if(itemsTO.getTypeId() != null) {
-				hqlBuilder.append(" AND t.typeId.id :typeId");
+			if(!StringUtils.isNullOrEmpty(itemsTO.getTypeId())) {
+				hqlBuilder.append(" AND t.typeId.id = :typeId");
 			}
 			TypedQuery<TypeItems> typedQuery = em.createQuery(hqlBuilder.toString(), TypeItems.class);
 			typedQuery.setParameter("status", StatusEnum.A);
-			if(itemsTO.getItemCode() != null) {
+			if(!StringUtils.isNullOrEmpty(itemsTO.getItemCode())) {
 				typedQuery.setParameter("code", itemsTO.getItemCode().concat("%"));
 			}
-			if(itemsTO.getItemDescription() != null) {
+			if(!StringUtils.isNullOrEmpty(itemsTO.getItemDescription())) {
 				typedQuery.setParameter("desc", itemsTO.getItemDescription().concat("%"));
 			}
-			if(itemsTO.getTypeId() != null) {
+			if(!StringUtils.isNullOrEmpty(itemsTO.getTypeId())) {
 				typedQuery.setParameter("typeId", Integer.parseInt(itemsTO.getTypeId()));
 			}
 			types = typedQuery.getResultList();
