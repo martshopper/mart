@@ -29,8 +29,5 @@
         <dependent-module archiveName="mysql-connector-java-5.1.6.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/mysql/mysql-connector-java/5.1.6/mysql-connector-java-5.1.6.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="mart.jar" deploy-path="/" handle="module:/resource/mart/mart">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
     </wb-module>
 </project-modules>
