@@ -14,6 +14,7 @@ public class StoreMasterTO {
 	private String storeCode;
 	private String storeName;
 	private String storeTypeId;
+	private String storeType;
 	public String getId() {
 		return id;
 	}
@@ -49,5 +50,11 @@ public class StoreMasterTO {
 	}
 	public void setStoreTypeId(String storeTypeId) {
 		this.storeTypeId = storeTypeId;
+	}
+	public String getStoreType() {
+		return storeType;
+	}
+	public void setStoreType(String storeType) {
+		this.storeType = storeType;
 	}
 }

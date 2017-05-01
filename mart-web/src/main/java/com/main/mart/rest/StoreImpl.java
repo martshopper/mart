@@ -150,6 +150,7 @@ public class StoreImpl implements StoreIf {
 				masterTO.setStoreName(storeMaster.getStoreName());
 				if(storeMaster.getStoreTypeId() != null) {
 					masterTO.setStoreTypeId(storeMaster.getStoreTypeId().getId()+"");
+					masterTO.setStoreType(storeMaster.getStoreTypeId().getDescription());
 				}
 				return masterTO;
 			}

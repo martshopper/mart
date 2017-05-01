@@ -80,8 +80,6 @@ $(document).ready(function() {
 		}
 	});
 	$("#btnSearchTypeItems").click(function() {
-		var url = 'itemCode='+$("#itemCode").val()+'&description='+$("#itemDescription").val();
-
 		loadTypeItemsGrid('itemCode='+$("#itemCode").val()+'&description='+$("#itemDescription").val()+'&typeId='+$("#typeId").val());
 	});	
 	loadTypeItemsGrid("");
@@ -152,24 +150,24 @@ $(document).ready(function() {
 				},
 				error: function (error) {
 					globalErrorAlert($.parseJSON(error.responseText).exception);
-				},            
+				}          
 			});
         });
 });
 function showTypeItem(id) {
 	$.ajax({
-			url: 'rest/typeitems/'+id,
-			type: 'GET',
-			success: function (data) {			
-				$("#typeItemId").val(data.id);
-				$("#typeId").val(data.typeId);
-				$("#itemCode").val(data.itemCode);
-				$("#itemDescription").val(data.itemDescription);
-				$("#btnSaveUpdateTypeItems").text("Update");
-			},
-			error: function (error) {
-				globalErrorAlert($.parseJSON(error.responseText).exception);
-			},            
+		url: 'rest/typeitems/'+id,
+		type: 'GET',
+		success: function (data) {			
+			$("#typeItemId").val(data.id);
+			$("#typeId").val(data.typeId);
+			$("#itemCode").val(data.itemCode);
+			$("#itemDescription").val(data.itemDescription);
+			$("#btnSaveUpdateTypeItems").text("Update");
+		},
+		error: function (error) {
+			globalErrorAlert($.parseJSON(error.responseText).exception);
+		}           
 	});
 }	
 </script>

@@ -1,12 +1,198 @@
-<!--link href="styles/extJsCss.css" rel="stylesheet" type="text/css" />
-<script src="scripts/extjsScripts/storeMaster.js"></script-->
+<script type="text/javascript">
+var storeDatatable;
+$(document).ready(function() {
+	mart.loadCombo({
+		comboComponentId : "storeTypeId",
+		restURL : "rest/typeitems/STORE_TYPE",
+		comboRootRef : "typeItemsTOs",
+		comboIdRef : "id",
+		comboValueRef : "itemDescription",
+	});
+   function loadStoreMaster(params) {
+		storeDatatable = $('#tblStoreMasters').DataTable({
+			"processing": false,
+			"searching": true,
+			"serverSide": true,
+			"processing": true,
+			"serverSide": false,
+			"paging": true,
+			"orderCellsTop": true,
+            "destroy": true,
+            dom: 'Bfrtip',
+            buttons: [{
+                extend: "print",
+                className: "btn default"
+            }, {
+                extend: "pdf",
+                className: "btn default"
+            }, {
+                extend: "csv",
+                className: "btn default"
+            }],
+			"columns": [
+				{ "data": "id", "render": function ( data, type, row ) {
+						return '<i class="glyphicon glyphicon-pencil btn btn-sm" onclick="showStore('+data+')"/>';
+					}
+				},
+				{ "data": "storeType","orderable": "true"},
+				{ "data": "storeCode","orderable": "true"},
+				{ "data": "storeName","orderable": "true"},
+				{ "data": "location", "orderable": "true" }				
+			],
+			"ajax": {
+			"url": "rest/store?"+params,
+			"dataSrc": "storeMaster",
+			"type": "GET"
+			}
+		});
+	}
+    $('#tblStoreMasters').on('click', 'tr', function () {
+        if ( !$(this).hasClass('selected')) {
+            storeDatatable.$('tr.selected').removeClass('selected');
+            if($(this).hasClass("odd") || $(this).hasClass("even")){
+                $(this).addClass('selected');
+            }
+        }
+    });
+	$("#btnResetStore").click(function() {
+			$('#store_master_form').data('bootstrapValidator').resetForm();
+			$("#storeMasterId").val("");
+			$("#storeTypeId").val("");
+			$("#storeCode").val("");
+			$("#storeName").val("");
+			$("#location").val("");
+			$("#btnSaveUpdateStore").text("Save");
+			loadStoreMaster("");
+	});
+	$("#btnDeleteStore").click(function() {
+		if($("#storeMasterId").val() != "") {
+			$.ajax({
+				url: 'rest/store/'+$("#storeMasterId").val(),
+				type: 'DELETE',
+				success: function (data) {
+					globalSuccessAlert("Store Deleted Successfully");
+					$("#btnResetStore").click();
+				},
+				error: function (error) {
+					globalErrorAlert($.parseJSON(error.responseText).exception);
+				},            
+			});
+		}else {
+			globalWarningAlert("Please select record to Delete");
+		}
+	});
+	$("#btnSearchStore").click(function() {
+		loadStoreMaster('location='+$("#location").val()+'&storeCode='+$("#storeCode").val()+'&storeName='+$("#storeName").val()+'&storeTypeId='+$("#storeTypeId").val());
+	});	
+	loadStoreMaster("");
+	$('#store_master_form').bootstrapValidator({
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            //validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            storeTypeId: {
+                validators: {
+                        stringLength: {
+                        min: 1,
+						max: 100,
+                    },
+                        notEmpty: {
+                        message: 'Please select Store Type'
+                    }
+                }
+            },
+			storeCode: {
+                validators: {
+                        stringLength: {
+                        min: 1,
+						max: 50,
+                    },
+                        notEmpty: {
+                        message: 'Please enter Store Code'
+                    }
+                }
+            },
+            storeName: {
+                validators: {
+                     stringLength: {
+                        min: 1,
+						max: 100,
+                    },
+                    notEmpty: {
+                        message: 'Please enter Store Name'
+                    }
+                }
+			},
+			location: {
+                validators: {
+                     stringLength: {
+                        min: 1,
+						max: 255,
+                    },
+                    notEmpty: {
+                        message: 'Please enter Location'
+                    }
+                }
+			}
+        }
+    }).on('success.form.bv', function(e) {
+            $('#store_master_form').data('bootstrapValidator').resetForm();
+            e.preventDefault();
+            var $form = $(e.target);
+            var bv = $form.data('bootstrapValidator');
+			var message = "Store Added Successfully";
+			if($("#storeMasterId").val() != "") {
+				message = "Store Updated Successfully";
+			}
+			var store = {
+				id : $("#storeMasterId").val(),
+				storeTypeId : $("#storeTypeId").val(),
+				storeCode : $("#storeCode").val(),
+				storeName : $("#storeName").val(),
+				location : $("#location").val()
+			};
+			$.ajax({
+				url: 'rest/store',
+				type: 'POST',
+				contentType: "application/json; charset=utf-8",
+				data: JSON.stringify(store),
+				success: function (data) {
+					globalSuccessAlert(message);
+					$("#btnResetStore").click();
+				},
+				error: function (error) {
+					globalErrorAlert($.parseJSON(error.responseText).exception);
+				},            
+			});
+        });
+});
+function showStore(id) {
+	$.ajax({
+		url: 'rest/store/'+id,
+		type: 'GET',
+		success: function (data) {			
+			$("#storeMasterId").val(data.id);
+			$("#storeTypeId").val(data.storeTypeId);
+			$("#storeCode").val(data.storeCode);
+			$("#storeName").val(data.storeName);
+			$("#location").val(data.location);
+			$("#btnSaveUpdateStore").text("Update");
+		},
+		error: function (error) {
+			globalErrorAlert($.parseJSON(error.responseText).exception);
+		},            
+	});
+}	
+</script>
 <div class="portlet box green">
     <div class="portlet-title">
         <div class="caption">
         <i class="fa fa-gift"></i>Store Master </div>
     </div>
 	<div class="portlet-body form">		
-       <form  class="form-horizontal" id="type_form">
+       <form  class="form-horizontal" id="store_master_form">
 			<div class="form-body">
 				 <div class="row">
 					<div class="col-sm-4">
@@ -15,7 +201,7 @@
 								<span class="required" aria-required="true"> * </span>
 							</label>
 							<div class="col-sm-8">
-								<select name="storeType" id="storeType" class="form-control"></select>
+								<select name="storeTypeId" id="storeTypeId" class="form-control"></select>
 								<span class="help-block"></span>
 							</div>
 						</div>
@@ -42,13 +228,15 @@
 							</div>
 						</div>
 					</div>
+				</div>
+				<div class="row">
 					<div class="col-sm-4">
 						<div class="form-group">
 							<label class="control-label col-sm-4">Location:
 								<span class="required" aria-required="true"> * </span>
 							</label>
 							<div class="col-sm-8">
-								 <input type="text" class="form-control" placeholder="" id="storeLocation" name="storeLocation">
+								 <input type="text" class="form-control" placeholder="" id="location" name="location">
 								<span class="help-block"></span>
 							</div>
 						</div>
@@ -60,16 +248,17 @@
                     <div class="col-sm-12">
                         <div class="row">
                             <div class="col-sm-offset-4 col-sm-8">
-                                <button type="button" class="btn btn-primary">Save</button>
-                                <button type="button" class="btn btn-primary">Delete</button>
-                                <button type="button" class="btn btn-primary">Reset</button>
-                                <button type="button" class="btn btn-primary">Search</button>
-                                <button type="button" class="btn btn-primary">Help</button>
+                                <button type="submit" id="btnSaveUpdateStore" class="btn btn-primary">Save</button>
+                                <button type="button" id="btnDeleteStore" class="btn btn-primary">Delete</button>
+                                <button type="button" id="btnResetStore" class="btn btn-primary">Reset</button>
+                                <button type="button" id="btnSearchStore" class="btn btn-primary">Search</button>
+                                <button type="button" id="btnHelpStore" class="btn btn-primary">Help</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <input type="hidden" id="storeMasterId" />
 		</form>
 	</div>
 </div>
@@ -80,16 +269,16 @@
         <div class="tools"> </div>
     </div>
     <div class="portlet-body">
-		<table id="tbStoreMaster" style="width:100%" class="table table-striped table-bordered table-hover dt-responsive" cellspacing="0">
+		<table id="tblStoreMasters" style="width:100%" class="table table-striped table-bordered table-hover dt-responsive" cellspacing="0">
 			<thead>
 				<tr>
-					<th width="20%">Store Code</th>
-					<th width="25%">Store Name</th>
-					<th width="20%">Store Type</th>
-					<th width="25%">Location</th>
+					<th width="1%"></th>
+					<th width="10%">Store Type</th>
+					<th width="15%">Store Code</th>
+					<th width="24%">Store Name</th>					
+					<th width="50%">Location</th>
 				 </tr>
 			</thead>
 		</table>
 	</div>
 </div>
-<input type="hidden" id="storeMasterId" />
