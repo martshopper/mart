@@ -29,7 +29,7 @@ public interface TypeItemsIf {
 	public TypeItemsTOs getAllTypeItems(@QueryParam("itemCode") String itemCode, @QueryParam("description") String description, @QueryParam("typeId") String typeId);
 	
 	@GET
-	@Path("/typeitems/{id}")
+	@Path("/typeitem/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public TypeItemsTO getTypeItemsById(@PathParam("id") Integer id);
 	

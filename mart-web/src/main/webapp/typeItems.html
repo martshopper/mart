@@ -156,7 +156,7 @@ $(document).ready(function() {
 });
 function showTypeItem(id) {
 	$.ajax({
-		url: 'rest/typeitems/'+id,
+		url: 'rest/typeitem/'+id,
 		type: 'GET',
 		success: function (data) {			
 			$("#typeItemId").val(data.id);
