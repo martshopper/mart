@@ -4,7 +4,9 @@
 package com.main.mart.utilities;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.crypto.Cipher;
@@ -137,4 +139,82 @@ public class MartUtilities {
 	public static Integer getUserId() {
 		return user_id;
 	}
+	
+	public static String getCurrentYear() {
+		try {
+			Calendar now = Calendar.getInstance();
+			int year = now.get(Calendar.YEAR);
+			return ""+year;
+		}catch (Exception exception) {
+			exception.printStackTrace();
+		}
+		return null;
+	}
+	
+	public static java.util.Date getDateTimeMMMSSFromString(String str) {	
+
+		if(str == null || str.isEmpty()) {
+			return null;
+		}
+		Date date = null;
+		DateFormat formatter ; 
+		formatter = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss");
+		try {
+			date = (Date)formatter.parse(str);
+		}
+		catch(ParseException e) {
+			date = null;
+		}
+		//           // logger.info("Date:"+date);
+		return date;
+	}
+	
+	public static java.util.Date getDateFromStringWithMMM(String str) {
+
+		if (str == null || str.isEmpty()) {
+			return null;
+		}
+		Date date = null;
+		DateFormat formatter;
+		formatter = new SimpleDateFormat(DATE_FORMAT_UI);
+		try {
+			date = (Date) formatter.parse(str);
+		} catch (ParseException e) {
+			date = null;
+		}
+		// logger.info("Date:" + date);
+		return date;
+	}
+	
+	public static String getStringDateInMMMFromDate(Date date) {	
+
+		if(date == null) {
+			return null;
+		}
+		SimpleDateFormat parseDatetoString;
+		parseDatetoString = new SimpleDateFormat(DATE_FORMAT_UI);
+		String strdate = parseDatetoString.format(date);
+
+		return strdate;
+	}
+	
+	public static String getMysqlOnlyDateMMMGUIToDb(String dt){
+		try{
+			SimpleDateFormat formatter, FORMATTER;
+			formatter = new SimpleDateFormat(DATE_FORMAT_UI);
+			String USDate=null;
+
+			Date date = formatter.parse(dt);
+			FORMATTER = new SimpleDateFormat("yyyy-MM-dd");
+
+			USDate=FORMATTER.format(date);
+
+			return USDate;
+		} catch (ParseException e){
+			logger.error("There is an exception");
+			return null;
+		}
+	}
+	
+	
 }
